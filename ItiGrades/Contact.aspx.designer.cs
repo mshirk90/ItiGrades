@@ -11,7 +11,7 @@ namespace ItiGrades
 {
 
 
-    public partial class _Default
+    public partial class Contact
     {
     }
 }
