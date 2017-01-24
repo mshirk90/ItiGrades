@@ -29,13 +29,14 @@
     <!-- Header -->
     <header id="header" class="skel-layers-fixed">
         <h1><a href="#">ITI Technical College</a></h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="Default.aspx">Home</a></li>
+        <label id="lblInstructor" runat="server" style="padding-left: 50%"></label>
+        <nav id="nav">            
+            <ul >
+                <li><a href="../Default.aspx">Home</a></li>
                 <li><a href="left-sidebar.html">Left Sidebar</a></li>
                 <li><a href="right-sidebar.html">Right Sidebar</a></li>
                 <li><a href="no-sidebar.html">No Sidebar</a></li>
-                <li><a href="../Account/Register.aspx" class="button special">Sign Up</a></li>
+                <li><asp:Label ID="lblSignUp" runat="server"><a href="../Account/Register.aspx" class="button special">Sign Up</a></asp:Label></li>
             </ul>
         </nav>
     </header>

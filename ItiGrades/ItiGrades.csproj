@@ -215,6 +215,9 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\banner.jpg" />
     <Content Include="left-sidebar.html" />
+    <Content Include="Nav Buttons\EditGrades.aspx" />
+    <Content Include="Nav Buttons\InstructorSetup.aspx" />
+    <Content Include="Nav Buttons\ViewClasses.aspx" />
     <Content Include="no-sidebar.html" />
     <Content Include="right-sidebar.html" />
     <Content Include="Scripts\bootstrap.js" />
@@ -349,6 +352,27 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Nav Buttons\EditGrades.aspx.cs">
+      <DependentUpon>EditGrades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nav Buttons\EditGrades.aspx.designer.cs">
+      <DependentUpon>EditGrades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Nav Buttons\InstructorSetup.aspx.cs">
+      <DependentUpon>InstructorSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nav Buttons\InstructorSetup.aspx.designer.cs">
+      <DependentUpon>InstructorSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Nav Buttons\ViewClasses.aspx.cs">
+      <DependentUpon>ViewClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nav Buttons\ViewClasses.aspx.designer.cs">
+      <DependentUpon>ViewClasses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -26,7 +26,7 @@
                 CssClass="text-danger" ErrorMessage="The first name field is required." ID="RequiredFieldValidator1" ValidationGroup="vgRegister"></asp:RequiredFieldValidator>
         </div>
         <div>
-            <asp:Label ID="lblStatus" runat="server" BorderStyle="None" ForeColor="White"></asp:Label>
+            <asp:Label ID="lblStatus" runat="server" BorderStyle="None" style="font: black"></asp:Label>
         </div>
             <asp:Button ID="btnRegister" runat="server" Text="Register" Class="button align-right" OnClick="btnRegister_Click" Style="color: black;" />
 

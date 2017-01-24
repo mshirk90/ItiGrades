@@ -13,6 +13,24 @@ namespace ItiGrades {
     public partial class SiteMaster {
         
         /// <summary>
+        /// lblInstructor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblInstructor;
+        
+        /// <summary>
+        /// lblSignUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSignUp;
+        
+        /// <summary>
         /// formMain control.
         /// </summary>
         /// <remarks>

@@ -5,49 +5,55 @@
     <section id="banner">
         <div class="inner">
             <h2>ITI Technical College</h2>
-            <p>Grades <a href="http://templated.co">TEMPLATED</a></p>
+            <p>Grade Portal <a href="http://templated.co"></a></p>
             <ul class="actions">
-                <li><a href="Account/Register.aspx" class="button big special">Sign Up</a></li>
-                <li><a href="Account/Login.aspx" class="button big alt">Log In</a></li>
+                <li>
+                   <asp:Label ID="lblSignUp" runat="server"><a href="Account/Register.aspx" class="button big special">Sign Up</a></asp:Label>
+                </li>
+                <li>
+                    <asp:Label ID="lblLogIn" runat="server"><a href="Account/Login.aspx" class="button big alt">Log In</a></asp:Label>
+                </li>
             </ul>
         </div>
     </section>
 
      <!-- One -->
-    <section id="one" class="wrapper style1">
+<div id="sectionMain" runat="server">    
+    <section id="one" class="wrapper style1">        
         <header class="major">
-            <h2>Ipsum feugiat consequat</h2>
-            <p>Tempus adipiscing commodo ut aliquam blandit</p>
+            <h2 id="lblHeader" runat="server">Ipsum feugiat consequat</h2>
+            <p>Navigate using the buttons below</p>
         </header>
         <div class="container">
             <div class="row">
                 <div class="4u">
                     <section class="special box">
-                        <i class="icon fa-area-chart major"></i>
-                        <h3>Justo placerat</h3>
-                        <p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
+                        <a href="Nav%20Buttons/EditGrades.aspx"><i class="icon fa-area-chart major"></i></a>
+                        <h3>Edit Grades</h3>
+                        <p>Enter/edit student grades here.</p>
                     </section>
                 </div>
                 <div class="4u">
                     <section class="special box">
-                        <i class="icon fa-refresh major"></i>
-                        <h3>Blandit quis curae</h3>
-                        <p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
+                       <a href="Nav%20Buttons/ViewClasses.aspx"><i class="icon fa-refresh major"></i></a>
+                        <h3>View all classes</h3>
+                        <p>View classes, students and grades.</p>
                     </section>
                 </div>
                 <div class="4u">
                     <section class="special box">
-                        <i class="icon fa-cog major"></i>
-                        <h3>Amet sed accumsan</h3>
-                        <p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
+                        <a href="Nav%20Buttons/InstructorSetup.aspx"><i class="icon fa-cog major"></i></a>
+                        <h3>Class Setup</h3>
+                        <p>Add your classes students for this term.</p>
                     </section>
                 </div>
             </div>
         </div>
     </section>
+</div>
 
     <!-- Two -->
-    <section id="two" class="wrapper style2">
+  <%--  <section id="two" class="wrapper style2">
         <header class="major">
             <h2>Commodo accumsan aliquam</h2>
             <p>Amet nisi nunc lorem accumsan</p>
@@ -113,7 +119,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--%>
     
 
 </asp:Content>
