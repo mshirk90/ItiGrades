@@ -232,7 +232,7 @@ namespace BusinessObjects
         #region Public Methods
         public EmailConfiguration GetById(Guid id)
         {
-            Database database = new Database("LooksGoodDatabase");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblEmailConfigGetById";
@@ -251,7 +251,7 @@ namespace BusinessObjects
         }
         public EmailConfiguration GetByDisplayName(String displayName)
         {
-            Database database = new Database("LooksGoodDatabase");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblEmailConfigGetByDisplayName";
@@ -290,7 +290,7 @@ namespace BusinessObjects
         public EmailConfiguration Save()
         {
             Boolean result = true;
-            Database database = new Database("LooksGoodDatabase");
+            Database database = new Database("DB_109645_projectfinal");
             database.BeginTransaction();
 
             if (base.IsNew == true && IsSavable() == true)

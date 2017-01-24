@@ -104,6 +104,11 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentINSERT";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
+                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
+                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
+                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
+
+                
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
@@ -134,6 +139,9 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentUPDATE";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
+                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
+                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
+                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
 
                 // Provides the empty buckets
@@ -204,7 +212,7 @@ namespace BusinessObjects
 
         public Student GetById(Guid id)
         {
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblStudentGetById";
@@ -243,7 +251,7 @@ namespace BusinessObjects
         public Student Save()
         {
             Boolean result = true;
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);
@@ -266,7 +274,7 @@ namespace BusinessObjects
         }
         public Student Login(String email, String password)
         {
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblStudentLogin";
@@ -294,14 +302,15 @@ namespace BusinessObjects
             String Password = Membership.GeneratePassword(12, 1);
             try
             {
-                Database database = new Database("LooksGoodDatabase");
+                Database database = new Database("DB_109645_projectfinal");
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblStudentINSERT";
-                database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = FirstName;
-                database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = LastName;
+                database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = FirstName;
+                database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = LastName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = Password;
+                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
                 _FirstName = FirstName;
                 _LastName = LastName;
@@ -335,7 +344,7 @@ namespace BusinessObjects
         public Student Exists(string email)
         {
             bool result = false;
-            Database database = new Database("LooksGoodDatabase");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblStudentExists";

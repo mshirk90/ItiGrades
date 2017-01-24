@@ -34,7 +34,7 @@ namespace BusinessObjects
         #region Public Methods
         public StudentList GetById(Guid Id)
         {
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblStudentGetById";
@@ -78,7 +78,7 @@ namespace BusinessObjects
         }
         public StudentList GetAll()
         {
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
 
             database.Command.Parameters.Clear();
             database.Command.CommandType = CommandType.StoredProcedure;

@@ -10,70 +10,34 @@
 namespace ItiGrades.Account {
     
     
-    public partial class Login {
+    public partial class ChangePassword {
         
         /// <summary>
-        /// lblLogin control.
+        /// txtOldPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLogin;
+        protected global::System.Web.UI.WebControls.TextBox txtOldPassword;
         
         /// <summary>
-        /// txtEmail control.
+        /// txtNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
         
         /// <summary>
-        /// txtPassword control.
+        /// txtConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
-        /// <summary>
-        /// btnLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
-        
-        /// <summary>
-        /// RegisterHyperLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
-        
-        /// <summary>
-        /// RememberMe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RememberMe;
-        
-        /// <summary>
-        /// ForgotPasswordHyperLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ForgotPasswordHyperLink;
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
         
         /// <summary>
         /// lblStatus control.
@@ -83,5 +47,32 @@ namespace ItiGrades.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStatus;
+        
+        /// <summary>
+        /// vsChangePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsChangePassword;
+        
+        /// <summary>
+        /// btnChangePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChangePassword;
+        
+        /// <summary>
+        /// pwRequirements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pwRequirements;
     }
 }

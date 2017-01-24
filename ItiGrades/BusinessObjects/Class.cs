@@ -149,7 +149,7 @@ namespace BusinessObjects
         #region Public Methods
         public Class GetById(Guid id)
         {
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblClassGetById";
@@ -187,7 +187,7 @@ namespace BusinessObjects
         public Class Save()
         {
             Boolean result = true;
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);

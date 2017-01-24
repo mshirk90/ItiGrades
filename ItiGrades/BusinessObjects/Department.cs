@@ -112,7 +112,7 @@ namespace BusinessObjects
 
         public Department GetById(Guid id)
         {
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblDepartmentGetById";
@@ -148,7 +148,7 @@ namespace BusinessObjects
         public Department Save()
         {
             Boolean result = true;
-            Database database = new Database("ITIGrades");
+            Database database = new Database("DB_109645_projectfinal");
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);

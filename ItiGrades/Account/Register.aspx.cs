@@ -21,33 +21,33 @@ namespace ItiGrades.Account
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            Student student = null;
+            Instructor instructor = null;
             if (IsValid)
             {
-                if (Session["Student"] == null)
+                if (Session["Instructor"] == null)
                 {
-                    student = new Student();
+                    instructor = new Instructor();
                 }
                 else
                 {
-                    student = (Student)Session["Student"];
+                    instructor = (Instructor)Session["Instructor"];
                 }
 
                 try
                 {
-                    if (student.EmailSent == false)
+                    if (instructor.EmailSent == false)
                     {
-                        student.Register(txtFirstName.Text, txtLastName.Text, txtEmail.Text);
-                        Session.Add("Student", student);
+                        instructor.Register(txtFirstName.Text, txtLastName.Text, txtEmail.Text);
+                        Session.Add("Instructor", instructor);
                     }
                 }
                 catch (Exception ex)
                 {
                     // show the broken rules
-                    for (Int32 i = 0; i < student.BrokenRules.Count; i++)
+                    for (Int32 i = 0; i < instructor.BrokenRules.Count; i++)
                     {
                         CustomValidator cvRules = new CustomValidator();
-                        cvRules.ErrorMessage = student.BrokenRules.List[i].Rule;
+                        cvRules.ErrorMessage = instructor.BrokenRules.List[i].Rule;
                         cvRules.Enabled = true;
                         cvRules.IsValid = false;
                         cvRules.ValidationGroup = "vgRegister";
@@ -59,13 +59,13 @@ namespace ItiGrades.Account
                 {
                     if (Page.IsValid == true)
                     {
-                        if (student.EmailSent == false)
+                        if (instructor.EmailSent == false)
                         {
 
-                            EmailHelper.Email.SendEmail(student.Email, "Registration Password", "Your password is: " + student.Password);
+                            Email.SendEmail(instructor.Email, "Registration Password", "Your password is: " + instructor.Password);
                             lblStatus.Text = "Please check your email for creditials.";
-                            student.EmailSent = true;
-                            student.Save();
+                            instructor.EmailSent = true;
+                            instructor.Save();
                         }
                         else
                         {

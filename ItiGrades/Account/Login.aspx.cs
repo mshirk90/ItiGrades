@@ -10,20 +10,20 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using BusinessObjects;
 
-namespace LooksGood.Account
+namespace ItiGrades.Account
 {
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            MasterPage masterpage = Page.Master;
-            Label label = (Label)masterpage.FindControl("lblForgotPassword");
-            label.Visible = true;
+            //MasterPage masterpage = Page.Master;
+            //Label label = (Label)masterpage.FindControl("lblForgotPassword");
+            //label.Visible = true;
 
 
             // READ THE COOKIE
-            if (Request.Cookies["ITICookies"] != null && Convert.ToBoolean(Request.Cookies["ITICookies"]["RememberMe"]) == true)
+            if (Request.Cookies["ITICookies"] != null /*&& Convert.ToBoolean(Request.Cookies["ITICookies"]["RememberMe"]) == true*/)
             {
                 txtEmail.Text = Request.Cookies["ITICookies"]["UserName"];
                 txtPassword.Text = Request.Cookies["ITICookies"]["Password"];
@@ -33,17 +33,17 @@ namespace LooksGood.Account
 
         private void UserLogin()
         {
-            Student student = new Student();
-            student = student.Login(txtEmail.Text, txtPassword.Text);
+            Instructor instructor = new Instructor();
+            instructor = instructor.Login(txtEmail.Text, txtPassword.Text);
 
 
-            if (student == null)
+            if (instructor == null)
             {
                 lblStatus.Text = "Invalid Username or Password";
             }
-            else if (student.Version == 0 && student.IsPasswordPending == true)
+            else if (instructor.Version == 0 && instructor.IsPasswordPending == true)
             {
-                Session.Add("Student", student);
+                Session.Add("Instructor", instructor);
                 Response.Redirect("ChangePassword.aspx");
             }
             else
@@ -56,7 +56,7 @@ namespace LooksGood.Account
                     Response.Cookies["ITICookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
                     Response.Cookies["ITICookies"].Expires = DateTime.MaxValue;
                 }
-                Session.Add("Student", student);
+                Session.Add("Instructor", instructor);
                 //if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("ExpandedPost"))
                 //{
                 //    string URL = Request.QueryString["returnURL"] + "&userId=" + user.Id;
@@ -74,7 +74,7 @@ namespace LooksGood.Account
                 }
                 else
                 {
-                    Response.Redirect("../Default.aspx?userId=" + student.Id);
+                    Response.Redirect("../Default.aspx?userId=" + instructor.Id);
                 }
             }
         }
