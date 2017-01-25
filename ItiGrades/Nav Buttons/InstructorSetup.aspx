@@ -5,50 +5,54 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-		<!-- Main -->
-			<section id="main" class="wrapper style1">
-				<header class="major">
-					<h2>Left Sidebar</h2>
-					<p>Tempus adipiscing commodo ut aliquam blandit</p>
-				</header>
-				<div class="container">
-					<div class="row">
-						<div class="4u">
-							<section>
-								<h3>--Start Here</h3>
-								<%--<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>--%>
-								<ul class="actions">
-									<li><asp:Button ID="btnAddClass" class="button alt" runat="server" Text="Add Class" OnClick="btnAddClass_Click"/></li>
-								</ul>
-							</section>
-							<hr />
-							<section>
-								<h3>Ante sed commodo</h3>
-								<ul class="alt">
-									<li><a href="#">Erat blandit risus vis adipiscing</a></li>
-									<li><a href="#">Tempus ultricies faucibus amet</a></li>
-									<li><a href="#">Arcu commodo non adipiscing quis</a></li>
-									<li><a href="#">Accumsan vis lacinia semper</a></li>
-									<li><a href="#">Erat blandit risus vis adipiscing</a></li>
-									<li><a href="#">Tempus ultricies faucibus amet</a></li>
-									<li><a href="#">Arcu commodo non adipiscing quis</a></li>
-									<li><a href="#">Accumsan vis lacinia semper</a></li>
-								</ul>
-							</section>
-						</div>
-						<div class="8u skel-cell-important">
-							<section>
-								<%--<asp:DataGrid ID="dgCreateClass" runat="server">
+    <!-- Main -->
+    <section id="main" class="wrapper style1">
+        <header class="major">
+            <h2>Left Sidebar</h2>
+            <p>Tempus adipiscing commodo ut aliquam blandit</p>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="4u">
+                    <section>
+                        <h3>--Start Here</h3>
+                        <%--<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>--%>
+                        <ul class="actions">
+                            <li><asp:Button ID="btnAddClass" class="button alt" runat="server" Text="Add Class" OnClick="btnAddClass_Click"/></li>
+                            <li><asp:Button ID="btnAddDepartment" class="button alt" runat="server" Text="Add Class"/></li>
+                            <li><asp:Button ID="btnAddStudent" class="button alt" runat="server" Text="Add Class"/></li>
+
+                        </ul>
+                    </section>
+                    <hr />
+                    <section>
+                        <h3>Ante sed commodo</h3>
+                        <ul class="alt">
+                            <li><a href="#">Erat blandit risus vis adipiscing</a></li>
+                            <li><a href="#">Tempus ultricies faucibus amet</a></li>
+                            <li><a href="#">Arcu commodo non adipiscing quis</a></li>
+                            <li><a href="#">Accumsan vis lacinia semper</a></li>
+                            <li><a href="#">Erat blandit risus vis adipiscing</a></li>
+                            <li><a href="#">Tempus ultricies faucibus amet</a></li>
+                            <li><a href="#">Arcu commodo non adipiscing quis</a></li>
+                            <li><a href="#">Accumsan vis lacinia semper</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="8u skel-cell-important">
+                    <section>
+                        <asp:GridView ID="dgGridView" runat="server"></asp:GridView>
+                        <%--<asp:DataGrid ID="dgCreateClass" runat="server">
                                     <Columns>
                                         <asp:TemplateColumn>                                           
                                         </asp:TemplateColumn>
                                     </Columns>
 								</asp:DataGrid>--%>
-							</section>
-						</div>
-					</div>
-					<hr class="major" />
-					<%--<div class="row">
+                    </section>
+                </div>
+            </div>
+            <hr class="major" />
+            <%--<div class="row">
 						<div class="6u">
 							<section class="special">
 								<a href="#" class="image fit"><img src="../images/pic01.jpg" alt="" /></a>
@@ -70,8 +74,8 @@
 							</section>
 						</div>
 					</div>--%>
-				</div>
-			</section>
+        </div>
+    </section>
 
 
 </asp:Content>
