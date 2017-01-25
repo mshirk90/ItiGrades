@@ -22,10 +22,31 @@ namespace ItiGrades.Nav_Buttons
                 btnAddDepartment.Visible = false;
                 btnAddStudent.Visible = false;
                 btnAddClass.Visible = false;
+                btnOne.Visible = false;
+                btnTwo.Visible = false;
+                btnThree.Visible = false;
+                lblOne.Visible = false;
+                lblTwo.Visible = false;
+                lblThree.Visible = false;
+                txtOne.Visible = false;
+                txtTwo.Visible = false;
+                txtThree.Visible = false;
+                ddlDepartment.Visible = false;
 
                 if (classes.InstructorId == null && classes.DepartmentId == null)
                 {
                     btnAddDepartment.Visible = true;
+                    ddlDepartment.Visible = true;                    
+                    DepartmentList dList = new DepartmentList();
+                    dList = dList.GetAll();
+
+                    foreach (Department name in dList.List)
+                    {
+                        ddlDepartment.Items.Add(name.ToString());
+                    }
+
+                    btnOne.Visible = true;
+                    btnOne.Text = "Add Department";
                 }
                 if (classes.InstructorId == null && classes.DepartmentId == department.Id)
                 {
@@ -40,16 +61,39 @@ namespace ItiGrades.Nav_Buttons
 
         protected void btnAddClass_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            DataRow dr;
+            
+        }
 
-            // Define the columns of the table.
-            dt.Columns.Add(new DataColumn("Class Name", typeof(Int32)));
-            dt.Columns.Add(new DataColumn("StringValue", typeof(string)));
-            dt.Columns.Add(new DataColumn("CurrencyValue", typeof(double)));
+        protected void btnAddDepartment_Click(object sender, EventArgs e)
+        {
 
-            dgGridView.DataSource = dt;
-            dgGridView.DataBind();
+            Department department = new Department();
+            Instructor instructor = (Instructor)Session["Instructor"];
+            string departmentValue = ddlDepartment.SelectedValue;
+            department.Name = departmentValue;
+
+            department.Save(instructor.Id, department.Name(departmentValue))    
+            
+
+        }
+
+        protected void btnAddStudent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnOne_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnTwo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnThree_Click(object sender, EventArgs e)
+        {
 
         }
     }

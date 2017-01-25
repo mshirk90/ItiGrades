@@ -18,9 +18,12 @@
                         <h3>--Start Here</h3>
                         <%--<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>--%>
                         <ul class="actions">
-                            <li><asp:Button ID="btnAddClass" class="button alt" runat="server" Text="Add Class" OnClick="btnAddClass_Click"/></li>
-                            <li><asp:Button ID="btnAddDepartment" class="button alt" runat="server" Text="Add Class"/></li>
-                            <li><asp:Button ID="btnAddStudent" class="button alt" runat="server" Text="Add Class"/></li>
+                            <li>
+                                <asp:Button ID="btnAddClass" class="button alt" runat="server" Text="Add Class" OnClick="btnAddClass_Click" /></li>
+                            <li>
+                                <asp:Button ID="btnAddDepartment" class="button alt" runat="server" Text="Add Department" OnClick="btnAddDepartment_Click" /></li>
+                            <li>
+                                <asp:Button ID="btnAddStudent" class="button alt" runat="server" Text="Add Student" OnClick="btnAddStudent_Click" /></li>
 
                         </ul>
                     </section>
@@ -41,13 +44,26 @@
                 </div>
                 <div class="8u skel-cell-important">
                     <section>
+                        <div>
+                            <div>
+                                <asp:Label ID="lblOne" runat="server"></asp:Label>
+                                <asp:TextBox ID="txtOne" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddlDepartment" runat="server"></asp:DropDownList>
+                                <asp:Button ID="btnOne" class="button alt" runat="server" Text="" OnClick="btnOne_Click"/>
+                            </div>
+                            <div>
+                                <asp:Label ID="lblTwo" runat="server"></asp:Label>
+                                <asp:TextBox ID="txtTwo" runat="server"></asp:TextBox>
+                                <asp:Button ID="btnTwo" class="button alt" runat="server" Text="" OnClick="btnTwo_Click"/>
+                            </div>
+                            <div>
+                                <asp:Label ID="lblThree" runat="server"></asp:Label>
+                                <asp:TextBox ID="txtThree" runat="server"></asp:TextBox>
+                                <asp:Button ID="btnThree" class="button alt" runat="server" Text="" OnClick="btnThree_Click"/>
+                            </div>
+                        </div>
                         <asp:GridView ID="dgGridView" runat="server"></asp:GridView>
-                        <%--<asp:DataGrid ID="dgCreateClass" runat="server">
-                                    <Columns>
-                                        <asp:TemplateColumn>                                           
-                                        </asp:TemplateColumn>
-                                    </Columns>
-								</asp:DataGrid>--%>
+
                     </section>
                 </div>
             </div>
