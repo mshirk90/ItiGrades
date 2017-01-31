@@ -45,6 +45,7 @@
     <form id="formMain" runat="server">
         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </form>
+    <asp:ContentPlaceHolder ID="FormContent" runat="server"></asp:ContentPlaceHolder>
    
 
     <!-- Footer -->

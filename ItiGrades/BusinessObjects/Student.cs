@@ -14,10 +14,6 @@ namespace BusinessObjects
         #region Private Members
         private string _FirstName = string.Empty;
         private string _LastName = string.Empty;
-        private string _Email = string.Empty;
-        private string _Password = String.Empty;
-        private bool _EmailSent = false;
-        private bool _IsPasswordPending = true;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         #endregion
 
@@ -33,63 +29,11 @@ namespace BusinessObjects
             set { _LastName = value; }
         }
 
-        public String Email
-        {
-            get { return _Email; }
-            set
-            {
-                if (_Email != value)
-                {
-                    _Email = value;
-                    base.IsDirty = true;
-                    Boolean Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
-        public String Password
-        {
-            get { return _Password; }
-            set
-            {
-                if (_Password != value)
-                {
-                    _Password = value;
-                    base.IsDirty = true;
-                    Boolean Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
         public BrokenRuleList BrokenRules
         {
             get { return _BrokenRules; }
         }
-        public Boolean EmailSent
-        {
-            get { return _EmailSent; }
-            set { _EmailSent = value; }
-        }
-        public bool IsPasswordPending
-        {
-            get
-            {
-                return _IsPasswordPending;
-            }
-            set
-            {
-                if (_IsPasswordPending != value)
-                {
-                    _IsPasswordPending = value;
-                    base.IsDirty = true;
-                    Boolean Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
+       
         #endregion
 
         #region Private Methods
@@ -104,9 +48,6 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentINSERT";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
-                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
-                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
-                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
                 
 
@@ -139,9 +80,6 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentUPDATE";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
-                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
-                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
-                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
 
                 // Provides the empty buckets
@@ -234,8 +172,6 @@ namespace BusinessObjects
             
             _FirstName = dr["FirstName"].ToString();
             _LastName = dr["LastName"].ToString();
-            _Email = dr["Email"].ToString();
-            _Password = dr["Password"].ToString();
         }
         public Boolean IsSavable()
         {
@@ -308,14 +244,9 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentINSERT";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = LastName;
-                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = Email;
-                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = Password;
-                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
                 _FirstName = FirstName;
                 _LastName = LastName;
-                _Email = Email;
-                _Password = Password;
 
                 base.IsDirty = true;
 

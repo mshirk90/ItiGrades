@@ -19,82 +19,124 @@ namespace ItiGrades.Nav_Buttons
                 Class classes = new Class();
                 Department department = new Department();
 
-                btnAddDepartment.Visible = false;
-                btnAddStudent.Visible = false;
-                btnAddClass.Visible = false;
-                btnOne.Visible = false;
-                btnTwo.Visible = false;
-                btnThree.Visible = false;
-                lblOne.Visible = false;
-                lblTwo.Visible = false;
-                lblThree.Visible = false;
-                txtOne.Visible = false;
-                txtTwo.Visible = false;
-                txtThree.Visible = false;
+                btnAddStudents.Visible = false;
+                btnAddClass.Visible = true;
+                btnSaveClass.Visible = false;
+                lblFirstName1.Visible = false;
+                lblLastName1.Visible = false;
+                lblFirstName2.Visible = false;
+                lblLastName2.Visible = false;
+                lblFirstName3.Visible = false;
+                lblLastName3.Visible = false;
+                txtFirstName1.Visible = false;
+                txtLastName1.Visible = false;
+                txtFirstName2.Visible = false;
+                txtLastName2.Visible = false;
+                txtFirstName3.Visible = false;
+                txtLastName3.Visible = false;
                 ddlDepartment.Visible = false;
-
-                if (classes.InstructorId == null && classes.DepartmentId == null)
-                {
-                    btnAddDepartment.Visible = true;
-                    ddlDepartment.Visible = true;                    
-                    DepartmentList dList = new DepartmentList();
-                    dList = dList.GetAll();
-
-                    foreach (Department name in dList.List)
-                    {
-                        ddlDepartment.Items.Add(name.ToString());
-                    }
-
-                    btnOne.Visible = true;
-                    btnOne.Text = "Add Department";
-                }
-                if (classes.InstructorId == null && classes.DepartmentId == department.Id)
-                {
-                    btnAddClass.Visible = true;
-                }
-                if (classes.InstructorId == instructor.Id && classes.DepartmentId == department.Id)
-                {
-                    btnAddStudent.Visible = true;
-                }                
+                ddlSelectClass.Visible = false;
             }
         }
 
         protected void btnAddClass_Click(object sender, EventArgs e)
         {
             
+            Instructor instructor = (Instructor)Session["Instructor"]; //Initialize BusinessObjects         
+            DepartmentList dList = new DepartmentList();                                
+
+            dList = dList.GetAll(); //Get all Departments
+
+
+            ddlDepartment.DataSource = dList.List; //Add all Departments to DropDownList
+            ddlDepartment.DataBind();            
+            ddlDepartment.Visible = true; //Show DropDownList for Departments 
         }
 
-        protected void btnAddDepartment_Click(object sender, EventArgs e)
+        private void LoadClasses(Guid departmentValue)
+        {
+            ClassList cList = new ClassList();
+            ddlDepartment.Visible = true;                 
+
+            if (ddlDepartment.SelectedValue != null)
+            {
+                cList = cList.GetClassesByDepartmentId(departmentValue);//Get Department Id By Department Name selected
+                ddlSelectClass.DataSource = cList.List;
+                ddlSelectClass.DataBind();
+                ddlSelectClass.Visible = true;                             
+            }
+            btnAddStudents.Visible = true;
+        }
+
+        private void AddStudents()
         {
 
-            Department department = new Department();
+        }
+
+        protected void btnAddStudents_Click(object sender, EventArgs e)
+        {
+            lblFirstName1.Visible = true;
+            lblLastName1.Visible = true;
+            lblFirstName2.Visible = true;
+            lblLastName2.Visible = true;
+            lblFirstName3.Visible = true;
+            lblLastName3.Visible = true;
+            txtFirstName1.Visible = true;
+            txtLastName1.Visible = true;
+            txtFirstName2.Visible = true;
+            txtLastName2.Visible = true;
+            txtFirstName3.Visible = true;
+            txtLastName3.Visible = true;
+            btnSaveClass.Visible = true;
+
+        }
+
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Guid departmentValue = new Guid(ddlDepartment.SelectedValue);
+            LoadClasses(departmentValue);
+        }
+
+        protected void btnSaveClass_Click(object sender, EventArgs e)
+        {
             Instructor instructor = (Instructor)Session["Instructor"];
-            string departmentValue = ddlDepartment.SelectedValue;
-            department.Name = departmentValue;
+            Class classes = new Class();
+            Student student = new Student();
+            Guid departmentID = new Guid(ddlDepartment.SelectedValue);
+            Guid classID = new Guid(ddlSelectClass.SelectedValue);
+            List<Student> studentList = new List<Student>();
 
-            department.Save(instructor.Id, department.Name(departmentValue))    
-            
 
-        }
+            if (ddlDepartment != null && ddlSelectClass != null)
+            {
+                if(txtFirstName1 != null && txtLastName1 != null)
+                {
+                    student.FirstName = txtFirstName1.Text;
+                    student.LastName = txtLastName1.Text;
+                    student.Save();
+                    studentList.Add(student);
 
-        protected void btnAddStudent_Click(object sender, EventArgs e)
-        {
+                }
+                if (txtFirstName2 != null && txtLastName2 != null)
+                {
+                    student.FirstName = txtFirstName1.Text;
+                    student.LastName = txtLastName1.Text;
+                    student.Save();
+                    studentList.Add(student);
+                }
+                if (txtFirstName3 != null && txtLastName3 != null)
+                {
+                    student.FirstName = txtFirstName1.Text;
+                    student.LastName = txtLastName1.Text;
+                    student.Save();
+                    studentList.Add(student);
+                }
+                foreach(Student students in studentList)
+                {
 
-        }
-
-        protected void btnOne_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnTwo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnThree_Click(object sender, EventArgs e)
-        {
-
+                    classes.Save();
+                }
+            }
         }
     }
 }

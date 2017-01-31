@@ -99,6 +99,27 @@ namespace BusinessObjects
 
             return this;
         }
+
+        public DepartmentList DepartmentGetIdByDepartmentName(string departmentName)
+        {
+            Database database = new Database("DB_109645_projectfinal");
+
+            database.Command.Parameters.Clear();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblDepartmentGetIdByDepartmentName";
+            database.Command.Parameters.Add("@Name", SqlDbType.VarChar).Value = departmentName;
+
+            DataTable dt = database.ExecuteQuery();
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Department department = new Department();
+                department.Initialize(dr);
+                department.InitializeBusinessData(dr);
+                _List.Add(department);
+            }
+            return this;
+        }
         #endregion
 
         #region Public Events

@@ -20,11 +20,6 @@
                         <ul class="actions">
                             <li>
                                 <asp:Button ID="btnAddClass" class="button alt" runat="server" Text="Add Class" OnClick="btnAddClass_Click" /></li>
-                            <li>
-                                <asp:Button ID="btnAddDepartment" class="button alt" runat="server" Text="Add Department" OnClick="btnAddDepartment_Click" /></li>
-                            <li>
-                                <asp:Button ID="btnAddStudent" class="button alt" runat="server" Text="Add Student" OnClick="btnAddStudent_Click" /></li>
-
                         </ul>
                     </section>
                     <hr />
@@ -46,22 +41,40 @@
                     <section>
                         <div>
                             <div>
-                                <asp:Label ID="lblOne" runat="server"></asp:Label>
-                                <asp:TextBox ID="txtOne" runat="server"></asp:TextBox>
-                                <asp:DropDownList ID="ddlDepartment" runat="server"></asp:DropDownList>
-                                <asp:Button ID="btnOne" class="button alt" runat="server" Text="" OnClick="btnOne_Click"/>
+
+                                <asp:DropDownList ID="ddlDepartment" runat="server" DataTextField="Name" DataValueField="Id" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSelectClass" runat="server" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
+                                <asp:Button ID="btnAddStudents" class="button alt" runat="server" Text="Add Students" OnClick="btnAddStudents_Click" />
+
                             </div>
                             <div>
-                                <asp:Label ID="lblTwo" runat="server"></asp:Label>
-                                <asp:TextBox ID="txtTwo" runat="server"></asp:TextBox>
-                                <asp:Button ID="btnTwo" class="button alt" runat="server" Text="" OnClick="btnTwo_Click"/>
+                                <div>
+                                    <asp:Label ID="lblFirstName1" runat="server" Text="First Name"></asp:Label>
+                                    <asp:TextBox ID="txtFirstName1" runat="server"></asp:TextBox>
+                                </div>
+                                <div>
+                                    <asp:Label ID="lblLastName1" runat="server" Text="Last Name"></asp:Label>
+                                    <asp:TextBox ID="txtLastName1" runat="server"></asp:TextBox>
+                                </div>
                             </div>
                             <div>
-                                <asp:Label ID="lblThree" runat="server"></asp:Label>
-                                <asp:TextBox ID="txtThree" runat="server"></asp:TextBox>
-                                <asp:Button ID="btnThree" class="button alt" runat="server" Text="" OnClick="btnThree_Click"/>
+                                <asp:Label ID="lblFirstName2" runat="server" Text="First Name"></asp:Label>
+                                <asp:TextBox ID="txtFirstName2" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblLastName2" runat="server" Text="Last Name"></asp:Label>
+                                <asp:TextBox ID="txtLastName2" runat="server"></asp:TextBox>
                             </div>
+                            <div>
+                                <asp:Label ID="lblFirstName3" runat="server" Text="First Name"></asp:Label>
+                                <asp:TextBox ID="txtFirstName3" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblLastName3" runat="server" Text="Last Name"></asp:Label>
+                                <asp:TextBox ID="txtLastName3" runat="server"></asp:TextBox>
+                            </div>
+                            <asp:Button ID="btnSaveClass" class="button alt" runat="server" Text="Save Class" OnClick="btnSaveClass_Click" />
+
                         </div>
+                        <div>
+                        </div>
+
                         <asp:GridView ID="dgGridView" runat="server"></asp:GridView>
 
                     </section>

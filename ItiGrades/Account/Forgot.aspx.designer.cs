@@ -10,7 +10,7 @@
 namespace ItiGrades.Account {
     
     
-    public partial class ForgotPassword {
+    public partial class Forgot {
         
         /// <summary>
         /// loginForm control.

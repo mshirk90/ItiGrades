@@ -15,6 +15,7 @@ namespace BusinessObjects
         private string _Name = string.Empty;
         private Guid _InstructorId = Guid.Empty;
         private Guid _DepartmentId = Guid.Empty;
+        private Guid _StudentId = Guid.Empty;
         #endregion
 
         #region Public Properties   
@@ -55,6 +56,22 @@ namespace BusinessObjects
             }
         }
 
+        public Guid StudentId
+        {
+            get { return _StudentId; }
+            set
+            {
+                if (_StudentId != value)
+                {
+                    _StudentId = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -70,7 +87,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Name", SqlDbType.VarChar).Value = _Name;
                 database.Command.Parameters.Add("@InstructorId", SqlDbType.UniqueIdentifier).Value = _InstructorId;
                 database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = _DepartmentId;
-
+                database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = _StudentId;
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
                 database.ExecuteNonQuery();
@@ -101,7 +118,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Name", SqlDbType.VarChar).Value = _Name;
                 database.Command.Parameters.Add("@InstructorId", SqlDbType.UniqueIdentifier).Value = _InstructorId;
                 database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = _DepartmentId;
-
+                database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = _StudentId;
 
                 // Provides the empty buckets
                 base.Initialize(database, base.Id);
@@ -172,7 +189,16 @@ namespace BusinessObjects
             _Name = dr["Name"].ToString();
             _InstructorId = (Guid)dr["InstructorId"];
             _DepartmentId = (Guid)dr["DepartmentId"];
+            _StudentId = (Guid)dr["StudentId"];
         }
+
+        public void InitializeBusinessDataForClasses(DataRow dr)
+        {
+
+            _Name = dr["Name"].ToString();
+            _DepartmentId = (Guid)dr["DepartmentId"];
+        }
+
         public Boolean IsSavable()
         {
             Boolean result = false;

@@ -22,42 +22,6 @@ namespace ItiGrades.Nav_Buttons {
         protected global::System.Web.UI.WebControls.Button btnAddClass;
         
         /// <summary>
-        /// btnAddDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddDepartment;
-        
-        /// <summary>
-        /// btnAddStudent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddStudent;
-        
-        /// <summary>
-        /// lblOne control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOne;
-        
-        /// <summary>
-        /// txtOne control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOne;
-        
-        /// <summary>
         /// ddlDepartment control.
         /// </summary>
         /// <remarks>
@@ -67,67 +31,139 @@ namespace ItiGrades.Nav_Buttons {
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
         
         /// <summary>
-        /// btnOne control.
+        /// ddlSelectClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOne;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelectClass;
         
         /// <summary>
-        /// lblTwo control.
+        /// btnAddStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTwo;
+        protected global::System.Web.UI.WebControls.Button btnAddStudents;
         
         /// <summary>
-        /// txtTwo control.
+        /// lblFirstName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTwo;
+        protected global::System.Web.UI.WebControls.Label lblFirstName1;
         
         /// <summary>
-        /// btnTwo control.
+        /// txtFirstName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTwo;
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName1;
         
         /// <summary>
-        /// lblThree control.
+        /// lblLastName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblThree;
+        protected global::System.Web.UI.WebControls.Label lblLastName1;
         
         /// <summary>
-        /// txtThree control.
+        /// txtLastName1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtThree;
+        protected global::System.Web.UI.WebControls.TextBox txtLastName1;
         
         /// <summary>
-        /// btnThree control.
+        /// lblFirstName2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnThree;
+        protected global::System.Web.UI.WebControls.Label lblFirstName2;
+        
+        /// <summary>
+        /// txtFirstName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName2;
+        
+        /// <summary>
+        /// lblLastName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLastName2;
+        
+        /// <summary>
+        /// txtLastName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLastName2;
+        
+        /// <summary>
+        /// lblFirstName3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFirstName3;
+        
+        /// <summary>
+        /// txtFirstName3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName3;
+        
+        /// <summary>
+        /// lblLastName3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLastName3;
+        
+        /// <summary>
+        /// txtLastName3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLastName3;
+        
+        /// <summary>
+        /// btnSaveClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveClass;
         
         /// <summary>
         /// dgGridView control.

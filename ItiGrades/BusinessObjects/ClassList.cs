@@ -99,6 +99,30 @@ namespace BusinessObjects
 
             return this;
         }
+
+
+        public ClassList GetClassesByDepartmentId(Guid departmentId)
+        {
+            Database database = new Database("DB_109645_projectfinal");
+
+            database.Command.Parameters.Clear();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblClassGetByDepartmentId";
+            database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = departmentId;
+
+            DataTable dt = database.ExecuteQuery();
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Class classes = new Class();
+                classes.Initialize(dr);
+                classes.InitializeBusinessDataForClasses(dr);
+                _List.Add(classes);
+            }
+            return this;
+        }
+
+     
         #endregion
 
         #region Public Events
