@@ -19,7 +19,7 @@
                         <%--<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>--%>
                         <ul class="actions">
                             <li>
-                                <asp:Button ID="btnAddClass" class="button alt" runat="server" Text="Add Class" OnClick="btnAddClass_Click" /></li>
+                                <asp:Button ID="btnSetupClass" class="button alt" runat="server" Text="Setup Class" OnClick="btnSetupClass_Click" /></li>
                         </ul>
                     </section>
                     <hr />
@@ -41,7 +41,7 @@
                     <section>
                         <div>
                             <div>
-
+                                <asp:DropDownList ID="ddlSections" runat="server" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
                                 <asp:DropDownList ID="ddlDepartment" runat="server" DataTextField="Name" DataValueField="Id" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 <asp:DropDownList ID="ddlSelectClass" runat="server" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
                                 <asp:Button ID="btnAddStudents" class="button alt" runat="server" Text="Add Students" OnClick="btnAddStudents_Click" />

@@ -20,7 +20,7 @@ namespace ItiGrades.Nav_Buttons
                 Department department = new Department();
 
                 btnAddStudents.Visible = false;
-                btnAddClass.Visible = true;
+                btnSetupClass.Visible = true;
                 btnSaveClass.Visible = false;
                 lblFirstName1.Visible = false;
                 lblLastName1.Visible = false;
@@ -36,16 +36,23 @@ namespace ItiGrades.Nav_Buttons
                 txtLastName3.Visible = false;
                 ddlDepartment.Visible = false;
                 ddlSelectClass.Visible = false;
+                ddlSections.Visible = false;
             }
         }
 
-        protected void btnAddClass_Click(object sender, EventArgs e)
+        protected void btnSetupClass_Click(object sender, EventArgs e)
         {
             
             Instructor instructor = (Instructor)Session["Instructor"]; //Initialize BusinessObjects         
-            DepartmentList dList = new DepartmentList();                                
+            DepartmentList dList = new DepartmentList();
+            SectionList sList = new SectionList();
 
+            sList = sList.GetAll(); // Get all sections
             dList = dList.GetAll(); //Get all Departments
+
+            ddlSections.DataSource = sList.List;
+            ddlSections.DataBind();
+            ddlSections.Visible = true;
 
 
             ddlDepartment.DataSource = dList.List; //Add all Departments to DropDownList
@@ -93,6 +100,7 @@ namespace ItiGrades.Nav_Buttons
 
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ddlSections.Visible = true;
             Guid departmentValue = new Guid(ddlDepartment.SelectedValue);
             LoadClasses(departmentValue);
         }
@@ -102,9 +110,13 @@ namespace ItiGrades.Nav_Buttons
             Instructor instructor = (Instructor)Session["Instructor"];
             Class classes = new Class();
             Student student = new Student();
-            Guid departmentID = new Guid(ddlDepartment.SelectedValue);
-            Guid classID = new Guid(ddlSelectClass.SelectedValue);
+            TermClass termclass = new TermClass();
+
             List<Student> studentList = new List<Student>();
+
+            Guid departmentId = new Guid(ddlDepartment.SelectedValue);
+            Guid classId = new Guid(ddlSelectClass.SelectedValue);
+            Guid sectionId = new Guid(ddlSections.SelectedValue);
 
 
             if (ddlDepartment != null && ddlSelectClass != null)
@@ -113,30 +125,41 @@ namespace ItiGrades.Nav_Buttons
                 {
                     student.FirstName = txtFirstName1.Text;
                     student.LastName = txtLastName1.Text;
+                    student.DepartmentId = departmentId;
                     student.Save();
                     studentList.Add(student);
 
                 }
                 if (txtFirstName2 != null && txtLastName2 != null)
                 {
-                    student.FirstName = txtFirstName1.Text;
-                    student.LastName = txtLastName1.Text;
+                    student.FirstName = txtFirstName2.Text;
+                    student.LastName = txtLastName2.Text;
+                    student.DepartmentId = departmentId;
                     student.Save();
                     studentList.Add(student);
                 }
                 if (txtFirstName3 != null && txtLastName3 != null)
                 {
-                    student.FirstName = txtFirstName1.Text;
-                    student.LastName = txtLastName1.Text;
+                    student.FirstName = txtFirstName3.Text;
+                    student.LastName = txtLastName3.Text;
+                    student.DepartmentId = departmentId;
                     student.Save();
                     studentList.Add(student);
                 }
                 foreach(Student students in studentList)
                 {
 
-                    classes.Save();
-                }
+
+                    termclass.ClassId = classId;
+                    termclass.InstructorId = instructor.Id;
+                    termclass.StudentId = students.Id;
+                    termclass.SectionId = sectionId;
+
+                    termclass.Save();
+                }  // Next time I get on... method not crashing but only saving one of the three students entered
             }
+            lblFirstName1.Text = "Class Successfully saved!";
+            lblFirstName1.Visible = true;
         }
     }
 }

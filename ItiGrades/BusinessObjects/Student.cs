@@ -14,6 +14,7 @@ namespace BusinessObjects
         #region Private Members
         private string _FirstName = string.Empty;
         private string _LastName = string.Empty;
+        private Guid _DepartmentId = Guid.Empty;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         #endregion
 
@@ -33,7 +34,23 @@ namespace BusinessObjects
         {
             get { return _BrokenRules; }
         }
-       
+
+        public Guid DepartmentId
+        {
+            get { return _DepartmentId; }
+            set
+            {
+                if (_DepartmentId != value)
+                {
+                    _DepartmentId = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -48,8 +65,8 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentINSERT";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
+                database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = _DepartmentId;
 
-                
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
@@ -80,7 +97,7 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentUPDATE";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
-
+                database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = _DepartmentId;
 
                 // Provides the empty buckets
                 base.Initialize(database, base.Id);
@@ -172,6 +189,7 @@ namespace BusinessObjects
             
             _FirstName = dr["FirstName"].ToString();
             _LastName = dr["LastName"].ToString();
+            _DepartmentId = (Guid)dr["DepartmentId"];
         }
         public Boolean IsSavable()
         {

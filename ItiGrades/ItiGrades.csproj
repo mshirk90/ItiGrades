@@ -329,8 +329,12 @@
     <Compile Include="BusinessObjects\Instructor.cs" />
     <Compile Include="BusinessObjects\InstructorList.cs" />
     <Compile Include="BusinessObjects\SavableEventArgs.cs" />
+    <Compile Include="BusinessObjects\Section.cs" />
+    <Compile Include="BusinessObjects\SectionList.cs" />
     <Compile Include="BusinessObjects\Student.cs" />
     <Compile Include="BusinessObjects\StudentList.cs" />
+    <Compile Include="BusinessObjects\TermClass.cs" />
+    <Compile Include="BusinessObjects\TermClassList.cs" />
     <Compile Include="ConfigurationHelper\Configuration.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
