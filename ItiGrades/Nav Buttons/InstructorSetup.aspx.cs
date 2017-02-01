@@ -124,7 +124,8 @@ namespace ItiGrades.Nav_Buttons
 
             if (ddlDepartment != null && ddlSelectClass != null)
             {
-                if (txtFirstName1 != null && txtLastName1 != null)
+                if (txtFirstName1.Text.Trim() != null && txtLastName1.Text.Trim() != null &&
+                    txtFirstName1.Text.Trim() != "" && txtLastName1.Text.Trim() != "")
                 {
                     Student student = new Student();
                     student.FirstName = txtFirstName1.Text;
@@ -134,7 +135,8 @@ namespace ItiGrades.Nav_Buttons
                     studentList.Add(student);
 
                 }
-                if (txtFirstName2 != null && txtLastName2 != null)
+                if (txtFirstName2.Text.Trim() != null && txtLastName2.Text.Trim() != null &&
+                    txtFirstName2.Text.Trim() != "" && txtLastName2.Text.Trim() != "")
                 {
                     Student student = new Student();
                     student.FirstName = txtFirstName2.Text;
@@ -143,7 +145,8 @@ namespace ItiGrades.Nav_Buttons
                     student.Save();
                     studentList.Add(student);
                 }
-                if (txtFirstName3 != null && txtLastName3 != null)
+                if (txtFirstName3.Text.Trim() != null && txtLastName3.Text.Trim() != null &&
+                    txtFirstName3.Text.Trim() != "" && txtLastName3.Text.Trim() != "")
                 {
                     Student student = new Student();
                     student.FirstName = txtFirstName3.Text;
@@ -164,7 +167,7 @@ namespace ItiGrades.Nav_Buttons
 
                     termclass.Save();
                     tClassList.Add(termclass);
-                }  // Next time I get on... method not crashing but only saving one of the three students entered
+                }  
             }
             lblFirstName1.Text = "Class Successfully saved!";
             lblFirstName1.Visible = true;
@@ -192,18 +195,20 @@ namespace ItiGrades.Nav_Buttons
             dt.Columns.Add("Section Name");
             foreach (TermClass tc in  tClassList)
             {
-                clas = clas.GetById(tc.ClassId);
-                student = student.GetById(tc.StudentId);
-                section = section.GetById(tc.SectionId);
+                
+                    clas = clas.GetById(tc.ClassId);
+                    student = student.GetById(tc.StudentId);
+                    section = section.GetById(tc.SectionId);
 
-                string className = clas.Name;
-                string instructorName = instructor.FirstName + " " + instructor.LastName;
-                string studentName = student.FirstName + " " + student.LastName;
-                string sectionName = section.Name;
+                    string className = clas.Name;
+                    string instructorName = instructor.FirstName + " " + instructor.LastName;
+                    string studentName = student.FirstName + " " + student.LastName;
+                    string sectionName = section.Name;
+               
+                    dt.Rows.Add(className, instructorName, studentName, sectionName);                
 
-                dt.Rows.Add(className, instructorName, studentName, sectionName);                               
+               
             }
-
             dgGridView.DataSource = dt;
             dgGridView.DataBind();
         }
