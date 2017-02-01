@@ -125,7 +125,7 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
-                database.Command.CommandText = "tblClassUPDATE";
+                database.Command.CommandText = "tblTermClassUPDATE";
                 database.Command.Parameters.Add("@ClassId", SqlDbType.UniqueIdentifier).Value = _ClassId;
                 database.Command.Parameters.Add("@InstructorId", SqlDbType.UniqueIdentifier).Value = _InstructorId;
                 database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = _StudentId;

@@ -13,6 +13,15 @@ namespace ItiGrades.Nav_Buttons {
     public partial class InstructorSetup {
         
         /// <summary>
+        /// lblTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitle;
+        
+        /// <summary>
         /// btnSetupClass control.
         /// </summary>
         /// <remarks>

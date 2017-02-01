@@ -8,8 +8,8 @@
     <!-- Main -->
     <section id="main" class="wrapper style1">
         <header class="major">
-            <h2>Left Sidebar</h2>
-            <p>Tempus adipiscing commodo ut aliquam blandit</p>
+           <h2><asp:Label ID="lblTitle" runat="server"></asp:Label></h2>
+            <p>Beginning of term class setup</p>
         </header>
         <div class="container">
             <div class="row">
@@ -24,16 +24,9 @@
                     </section>
                     <hr />
                     <section>
-                        <h3>Ante sed commodo</h3>
+                        <h3></h3>
                         <ul class="alt">
-                            <li><a href="#">Erat blandit risus vis adipiscing</a></li>
-                            <li><a href="#">Tempus ultricies faucibus amet</a></li>
-                            <li><a href="#">Arcu commodo non adipiscing quis</a></li>
-                            <li><a href="#">Accumsan vis lacinia semper</a></li>
-                            <li><a href="#">Erat blandit risus vis adipiscing</a></li>
-                            <li><a href="#">Tempus ultricies faucibus amet</a></li>
-                            <li><a href="#">Arcu commodo non adipiscing quis</a></li>
-                            <li><a href="#">Accumsan vis lacinia semper</a></li>
+                           
                         </ul>
                     </section>
                 </div>

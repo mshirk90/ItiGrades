@@ -185,11 +185,8 @@ namespace BusinessObjects
         }
         public void InitializeBusinessData(DataRow dr)
         {
-
             _Name = dr["Name"].ToString();
-            _InstructorId = (Guid)dr["InstructorId"];
             _DepartmentId = (Guid)dr["DepartmentId"];
-            _StudentId = (Guid)dr["StudentId"];
         }
 
         public void InitializeBusinessDataForClasses(DataRow dr)
