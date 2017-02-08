@@ -30,14 +30,25 @@
                 </div>
                 <div class="8u skel-cell-important">
                     <section>
-                        <div>
-                            <div>
-                                <asp:DropDownList ID="ddlSections" runat="server" DataTextField="Name" DataValueField="Id" OnSelectedIndexChanged="ddlSections_SelectedIndexChanged"  Visible="false" AutoPostBack="true"></asp:DropDownList>
-                            </div>
-                        </div>
-                        <asp:GridView ID="gvMorning" runat="server"></asp:GridView>
-                        <asp:GridView ID="gvAfternoon" runat="server"></asp:GridView>
-                        <asp:GridView ID="gvEvening" runat="server"></asp:GridView>
+                        <div style="white-space: nowrap">
+                           
+                                <asp:DropDownList ID="ddlSections" runat="server" DataTextField="Name" DataValueField="Id" Style="width: auto; display:inline-block" OnSelectedIndexChanged="ddlSections_SelectedIndexChanged" Visible="false" AutoPostBack="true"></asp:DropDownList>
+                               
+                      
+                                <asp:Label ID="lblOrderBy" runat="server" Visible="false" Text="Order by:" style="padding-left: 40px;"/>
+                                <asp:DropDownList runat="server" Visible="false" AutoPostBack="true" ID="ddlSelection" Style="width: auto; display:inline-block" OnSelectedIndexChanged="ddlSelection_SelectedIndexChanged">
+                                    <asp:ListItem Text="Student Name" Value="Student Name" />
+                                    <asp:ListItem Text="Class Name" Value="Class Name" />
+                                </asp:DropDownList>
+
+                                <asp:DropDownList runat="server" Visible="false" AutoPostBack="true" ID="ddlDirection" Style="width: auto; display:inline-block" OnSelectedIndexChanged="ddlDirection_SelectedIndexChanged">
+                                    <asp:ListItem Text="ASC" />
+                                     <asp:ListItem Text="DESC" />
+                                </asp:DropDownList>
+                              
+                           </div>
+                       <hr />
+                        <asp:GridView ID="gvViewClass" runat="server" Visible="false"></asp:GridView>
 
                     </section>
                 </div>

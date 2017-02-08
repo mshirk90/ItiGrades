@@ -11,102 +11,105 @@ namespace ItiGrades.Nav_Buttons
 {
     public partial class InstructorSetup : System.Web.UI.Page
     {
+        
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Instructor"] != null)
             {
                 Instructor instructor = (Instructor)Session["Instructor"];
 
-                Class classes = new Class();
-                Department department = new Department();
-
                 lblTitle.Text = "Welcome " + instructor.FirstName + " " + instructor.LastName;
 
-
-                btnAddStudents.Visible = false;
-                btnSetupClass.Visible = true;
-                btnSaveClass.Visible = false;
-                lblFirstName1.Visible = false;
-                lblLastName1.Visible = false;
-                lblFirstName2.Visible = false;
-                lblLastName2.Visible = false;
-                lblFirstName3.Visible = false;
-                lblLastName3.Visible = false;
-                txtFirstName1.Visible = false;
-                txtLastName1.Visible = false;
-                txtFirstName2.Visible = false;
-                txtLastName2.Visible = false;
-                txtFirstName3.Visible = false;
-                txtLastName3.Visible = false;
-                ddlDepartment.Visible = false;
-                ddlSelectClass.Visible = false;
-                ddlSections.Visible = false;
             }
-        }
+         
+            if (!this.IsPostBack)
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("First Name");
+                dt.Columns.Add("Last Name");
+                ViewState["StudentNames"] = dt;
+                this.BindGrid();
+            }
+
+        }    
 
         protected void btnSetupClass_Click(object sender, EventArgs e)
         {
 
             Instructor instructor = (Instructor)Session["Instructor"]; //Initialize BusinessObjects         
-            DepartmentList dList = new DepartmentList();
+            
             SectionList sList = new SectionList();
 
             sList = sList.GetAll(); // Get all sections
-            dList = dList.GetAll(); //Get all Departments
 
             ddlSections.DataSource = sList.List;
             ddlSections.DataBind();
-            ddlSections.Visible = true;
+            ddlSections.Items.Add("Choose Class Time");
+            ddlSections.SelectedValue = "Choose Class Time";
+            ddlSections.Visible = true;           
+        }
 
+        protected void ddlSections_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DepartmentList dList = new DepartmentList();
+
+            dList = dList.GetAll(); //Get all Departments
 
             ddlDepartment.DataSource = dList.List; //Add all Departments to DropDownList
             ddlDepartment.DataBind();
+            ddlDepartment.Items.Add("Choose Department");
+            ddlDepartment.SelectedValue = "Choose Department";
             ddlDepartment.Visible = true; //Show DropDownList for Departments 
         }
 
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Guid departmentValue = new Guid(ddlDepartment.SelectedValue);
+            LoadClasses(departmentValue);
+        }
         private void LoadClasses(Guid departmentValue)
         {
             ClassList cList = new ClassList();
-            ddlDepartment.Visible = true;
+            //ddlDepartment.Visible = true;
 
             if (ddlDepartment.SelectedValue != null)
             {
                 cList = cList.GetClassesByDepartmentId(departmentValue);//Get Department Id By Department Name selected
                 ddlSelectClass.DataSource = cList.List;
                 ddlSelectClass.DataBind();
+                ddlSelectClass.Items.Add("Choose Class");
+                ddlSelectClass.SelectedValue = "Choose Class";
                 ddlSelectClass.Visible = true;
             }
             btnAddStudents.Visible = true;
         }
-
-        private void AddStudents()
-        {
-
-        }
+        
 
         protected void btnAddStudents_Click(object sender, EventArgs e)
         {
-            lblFirstName1.Visible = true;
-            lblLastName1.Visible = true;
-            lblFirstName2.Visible = true;
-            lblLastName2.Visible = true;
-            lblFirstName3.Visible = true;
-            lblLastName3.Visible = true;
-            txtFirstName1.Visible = true;
-            txtLastName1.Visible = true;
-            txtFirstName2.Visible = true;
-            txtLastName2.Visible = true;
-            txtFirstName3.Visible = true;
-            txtLastName3.Visible = true;
+            tblInsert.Visible = true;
             btnSaveClass.Visible = true;
-
         }
 
-        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
-            ddlSections.Visible = true;
-            Guid departmentValue = new Guid(ddlDepartment.SelectedValue);
-            LoadClasses(departmentValue);
+            DataTable dt = (DataTable)ViewState["StudentNames"];
+            dt.Rows.Add(txtFirstName.Text.Trim(), txtLastName.Text.Trim());
+            ViewState["StudentNames"] = dt;
+            this.BindGrid();
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+        }
+
+        protected void BindGrid()
+        {
+            GridView1.DataSource = (DataTable)ViewState["StudentNames"];
+            GridView1.DataBind();
+
+            Session["SaveTable"] = (DataTable)ViewState["StudentNames"];
         }
 
         protected void btnSaveClass_Click(object sender, EventArgs e)
@@ -124,37 +127,19 @@ namespace ItiGrades.Nav_Buttons
 
             if (ddlDepartment != null && ddlSelectClass != null)
             {
-                if (txtFirstName1.Text.Trim() != null && txtLastName1.Text.Trim() != null &&
-                    txtFirstName1.Text.Trim() != "" && txtLastName1.Text.Trim() != "")
-                {
-                    Student student = new Student();
-                    student.FirstName = txtFirstName1.Text;
-                    student.LastName = txtLastName1.Text;
-                    student.DepartmentId = departmentId;
-                    student.Save();
-                    studentList.Add(student);
+                DataTable dt = Session["SaveTable"] as DataTable;
 
-                }
-                if (txtFirstName2.Text.Trim() != null && txtLastName2.Text.Trim() != null &&
-                    txtFirstName2.Text.Trim() != "" && txtLastName2.Text.Trim() != "")
+                foreach(DataRow row in dt.Rows)
                 {
                     Student student = new Student();
-                    student.FirstName = txtFirstName2.Text;
-                    student.LastName = txtLastName2.Text;
+                    student.FirstName = row[0].ToString();
+                    student.LastName = row[1].ToString();
                     student.DepartmentId = departmentId;
                     student.Save();
                     studentList.Add(student);
                 }
-                if (txtFirstName3.Text.Trim() != null && txtLastName3.Text.Trim() != null &&
-                    txtFirstName3.Text.Trim() != "" && txtLastName3.Text.Trim() != "")
-                {
-                    Student student = new Student();
-                    student.FirstName = txtFirstName3.Text;
-                    student.LastName = txtLastName3.Text;
-                    student.DepartmentId = departmentId;
-                    student.Save();
-                    studentList.Add(student);
-                }
+
+              
                 foreach (Student students in studentList)
                 {
                     TermClass termclass = new TermClass();
@@ -169,16 +154,16 @@ namespace ItiGrades.Nav_Buttons
                     tClassList.Add(termclass);
                 }  
             }
-            lblFirstName1.Text = "Class Successfully saved!";
-            lblFirstName1.Visible = true;
-            lblLastName1.Text = "Here's a preview of your class..";
-            lblLastName1.Visible = true;
+            lblStatus1.Text = "Class Successfully saved!";
+            lblStatus1.Visible = true;
+            lblStatus2.Text = "Here's a preview of your class..";
+            lblStatus2.Visible = true;
+
+
+
 
             ShowTable(tClassList);
         }
-
-
-
 
         private void ShowTable(List<TermClass> tClassList)
         {
@@ -189,9 +174,10 @@ namespace ItiGrades.Nav_Buttons
 
             DataTable dt = new DataTable();
 
+
+            dt.Columns.Add("Student Name");
             dt.Columns.Add("Class Name");
             dt.Columns.Add("Instructor Name");
-            dt.Columns.Add("Student Name");
             dt.Columns.Add("Section Name");
             foreach (TermClass tc in  tClassList)
             {
@@ -205,13 +191,12 @@ namespace ItiGrades.Nav_Buttons
                     string studentName = student.FirstName + " " + student.LastName;
                     string sectionName = section.Name;
                
-                    dt.Rows.Add(className, instructorName, studentName, sectionName);                
+                    dt.Rows.Add(studentName, className, instructorName, sectionName);                
 
                
-            }
-            dgGridView.DataSource = dt;
-            dgGridView.DataBind();
+            }           
         }
+
 
     }
     

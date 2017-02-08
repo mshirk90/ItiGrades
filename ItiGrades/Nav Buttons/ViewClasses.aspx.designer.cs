@@ -40,30 +40,39 @@ namespace ItiGrades.Nav_Buttons {
         protected global::System.Web.UI.WebControls.DropDownList ddlSections;
         
         /// <summary>
-        /// gvMorning control.
+        /// lblOrderBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMorning;
+        protected global::System.Web.UI.WebControls.Label lblOrderBy;
         
         /// <summary>
-        /// gvAfternoon control.
+        /// ddlSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAfternoon;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelection;
         
         /// <summary>
-        /// gvEvening control.
+        /// ddlDirection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEvening;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDirection;
+        
+        /// <summary>
+        /// gvViewClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvViewClass;
     }
 }

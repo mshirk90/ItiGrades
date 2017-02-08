@@ -13,13 +13,12 @@ namespace ItiGrades.Nav_Buttons
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["Instructor"] != null)
             {
                 Instructor instructor = (Instructor)Session["Instructor"];
 
                 lblTitle.Text = "Welcome " + instructor.FirstName + " " + instructor.LastName;
-
-                ddlSections.Items.Add("Default");         
             }
         }
 
@@ -31,6 +30,8 @@ namespace ItiGrades.Nav_Buttons
 
             ddlSections.DataSource = sList.List;
             ddlSections.DataBind();
+            ddlSections.Items.Add("Choose Class Time");
+            ddlSections.SelectedValue = "Choose Class Time";
             ddlSections.Visible = true;
         }
 
@@ -87,90 +88,84 @@ namespace ItiGrades.Nav_Buttons
             Student student = new Student();
             Section section = new Section();
             Class clas = new Class();
-
-            List<DataTable> dtList = new List<DataTable>();
+   
             TermClassList tClassList = new TermClassList();
-            DataTable dtMorning = new DataTable();
-            DataTable dtAfternoon = new DataTable();
-            DataTable dtEvening = new DataTable();
+            DataTable dt = new DataTable();
 
             tClassList = tClassList.GetAll(); // Get Term classes
 
-            dtMorning.Columns.Add("Class Name");
-            dtMorning.Columns.Add("Instructor Name");
-            dtMorning.Columns.Add("Student Name");
-            dtMorning.Columns.Add("Section Name");
+            
 
-            dtAfternoon.Columns.Add("Class Name");
-            dtAfternoon.Columns.Add("Instructor Name");
-            dtAfternoon.Columns.Add("Student Name");
-            dtAfternoon.Columns.Add("Section Name");
+            dt.Columns.Add("Student Name");
+            dt.Columns.Add("Class Name");
+            dt.Columns.Add("Instructor Name");
+            dt.Columns.Add("Section Name");
 
-            dtEvening.Columns.Add("Class Name");
-            dtEvening.Columns.Add("Instructor Name");
-            dtEvening.Columns.Add("Student Name");
-            dtEvening.Columns.Add("Section Name");
+            Guid sectionID = new Guid(ddlSections.SelectedValue);
 
             foreach (TermClass tc in tClassList.List)
             {
                 if (tc.InstructorId == instructor.Id)
                 {
-                    clas = clas.GetById(tc.ClassId);
-                    student = student.GetById(tc.StudentId);
-                    section = section.GetById(tc.SectionId);
+                    if (tc.SectionId == sectionID)
+                    {
+                        clas = clas.GetById(tc.ClassId);
+                        student = student.GetById(tc.StudentId);
 
-                    string className = clas.Name;
-                    string instructorName = instructor.FirstName + " " + instructor.LastName;
-                    string studentName = student.FirstName + " " + student.LastName;
-                    Guid sectionID =  new Guid(ddlSections.SelectedValue);
-                    section.Id = sectionID;
-                    string sectionName = section.Name;
+                        string className = clas.Name;
+                        string instructorName = instructor.FirstName + " " + instructor.LastName;
+                        string studentName = student.FirstName + " " + student.LastName;
+                        string sectionName = ddlSections.SelectedItem.ToString();
 
-                    if (sectionName == "Morning")
-                    {
-                        dtMorning.Rows.Add(className, instructorName, studentName, sectionName);
-                        MorningTable(dtMorning);
-                    }
-                    if (sectionName == "Afternoon")
-                    {
-                        dtAfternoon.Rows.Add(className, instructorName, studentName, sectionName);
-                        AfternoonTable(dtAfternoon);
-                    }
-                    if (sectionName == "Evening")
-                    {
-                        dtEvening.Rows.Add(className, instructorName, studentName, sectionName);
-                        EveningTable(dtEvening);
+                        dt.Rows.Add(studentName, className, instructorName, sectionName);
                     }
                 }
+                ShowTable(dt);
             }
         }
 
-        private void MorningTable(DataTable dt)
-        {
-            DataTable dtMorning = new DataTable();
-            dtMorning = dt;
 
-            gvMorning.DataSource = dtMorning;
-            gvMorning.DataBind();
+        private void ShowTable(DataTable dt)
+        {
+            gvViewClass.Visible = true;
+
+            dt.DefaultView.Sort = (ddlSelection.SelectedValue + " " + ddlDirection.Text);
+
+            gvViewClass.DataSource = dt;
+            gvViewClass.DataBind();
+
+            ddlSelection.Visible = true;
+            ddlDirection.Visible = true;
+            lblOrderBy.Visible = true;
+
+            Session["DataTable"] = dt;
         }
 
-        private void AfternoonTable(DataTable dt)
-        {
-            DataTable dtAfternoon = new DataTable();
-            dtAfternoon = dt;
 
-            gvAfternoon.DataSource = dtAfternoon;
-            gvAfternoon.DataBind();
+
+
+        protected void ddlSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable data = Session["DataTable"] as DataTable;
+            if (gvViewClass.Visible = true && data != null)
+            {
+                data.DefaultView.Sort = (ddlSelection.SelectedValue + " " + ddlDirection.Text);
+
+                gvViewClass.DataSource = data;
+                gvViewClass.DataBind();
+            }
         }
 
-        private void EveningTable(DataTable dt)
+        protected void ddlDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dtEvening = new DataTable();
-            dtEvening = dt;
+            DataTable data = Session["DataTable"] as DataTable;
+            if (gvViewClass.Visible = true && data != null)
+            {
+                data.DefaultView.Sort = (ddlSelection.SelectedValue + " " + ddlDirection.Text);
 
-            gvEvening.DataSource = dtEvening;
-            gvEvening.DataBind();
+                gvViewClass.DataSource = data;
+                gvViewClass.DataBind();
+            }
         }
-
     }
 }

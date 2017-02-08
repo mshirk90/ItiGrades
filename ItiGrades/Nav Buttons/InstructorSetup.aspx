@@ -8,7 +8,8 @@
     <!-- Main -->
     <section id="main" class="wrapper style1">
         <header class="major">
-           <h2><asp:Label ID="lblTitle" runat="server"></asp:Label></h2>
+            <h2>
+                <asp:Label ID="lblTitle" runat="server"></asp:Label></h2>
             <p>Beginning of term class setup</p>
         </header>
         <div class="container">
@@ -26,7 +27,6 @@
                     <section>
                         <h3></h3>
                         <ul class="alt">
-                           
                         </ul>
                     </section>
                 </div>
@@ -34,42 +34,44 @@
                     <section>
                         <div>
                             <div>
-                                <asp:DropDownList ID="ddlSections" runat="server" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
-                                <asp:DropDownList ID="ddlDepartment" runat="server" DataTextField="Name" DataValueField="Id" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlSelectClass" runat="server" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
-                                <asp:Button ID="btnAddStudents" class="button alt" runat="server" Text="Add Students" OnClick="btnAddStudents_Click" />
+                                <asp:DropDownList ID="ddlSections" Visible="false" runat="server" DataTextField="Name" DataValueField="Id" Style="width: auto;" OnSelectedIndexChanged="ddlSections_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
-                            </div>
-                            <div>
-                                <div>
-                                    <asp:Label ID="lblFirstName1" runat="server" Text="First Name"></asp:Label>
-                                    <asp:TextBox ID="txtFirstName1" runat="server"></asp:TextBox>
-                                </div>
-                                <div>
-                                    <asp:Label ID="lblLastName1" runat="server" Text="Last Name"></asp:Label>
-                                    <asp:TextBox ID="txtLastName1" runat="server"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div>
-                                <asp:Label ID="lblFirstName2" runat="server" Text="First Name"></asp:Label>
-                                <asp:TextBox ID="txtFirstName2" runat="server"></asp:TextBox>
-                                <asp:Label ID="lblLastName2" runat="server" Text="Last Name"></asp:Label>
-                                <asp:TextBox ID="txtLastName2" runat="server"></asp:TextBox>
-                            </div>
-                            <div>
-                                <asp:Label ID="lblFirstName3" runat="server" Text="First Name"></asp:Label>
-                                <asp:TextBox ID="txtFirstName3" runat="server"></asp:TextBox>
-                                <asp:Label ID="lblLastName3" runat="server" Text="Last Name"></asp:Label>
-                                <asp:TextBox ID="txtLastName3" runat="server"></asp:TextBox>
-                            </div>
-                            <asp:Button ID="btnSaveClass" class="button alt" runat="server" Text="Save Class" OnClick="btnSaveClass_Click" />
+                                <asp:DropDownList ID="ddlDepartment" Visible="false" runat="server" DataTextField="Name" DataValueField="Id" Style="width: auto;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
+                                <asp:DropDownList ID="ddlSelectClass" Visible="false" runat="server" DataTextField="Name" DataValueField="Id" Style="width: auto;"></asp:DropDownList>
+
+                                <asp:Button ID="btnAddStudents" Visible="false" class="button alt" runat="server" Text="Add Students" OnClick="btnAddStudents_Click" />
+                            </div>
+
+
+                            <asp:Table runat="server" ID="tblInsert" Visible="false">
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                        <asp:TextBox ID="txtFirstName" runat="server" Placeholder="First Name" />
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                        <asp:TextBox ID="txtLastName" runat="server" Placeholder="Last Name" />
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                        <asp:Button ID="Button1" runat="server" Text="Add" OnClick="btnAdd_Click" />
+                                        <asp:Button ID="btnSaveClass" Visible="false" class="button alt" runat="server" Text="Save Class" Style="padding-left: 20px;" OnClick="btnSaveClass_Click" />
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                            </asp:Table>
+                            <br />
+                            <div>
+                                <asp:Label ID="lblStatus1" runat="server"></asp:Label>
+                                <asp:Label ID="lblStatus2" runat="server"></asp:Label>
+                            </div>
                         </div>
                         <div>
                         </div>
-
-                        <asp:GridView ID="dgGridView" runat="server"></asp:GridView>
-
+                        <asp:GridView ID="GridView1" runat="server">
+                        </asp:GridView>
                     </section>
                 </div>
             </div>
