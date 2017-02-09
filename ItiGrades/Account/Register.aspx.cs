@@ -37,8 +37,7 @@ namespace ItiGrades.Account
                 {
                     if (instructor.EmailSent == false)
                     {
-                        instructor.Register(txtFirstName.Text, txtLastName.Text, txtEmail.Text);
-                        Session.Add("Instructor", instructor);
+                        instructor.Register(txtFirstName.Text, txtLastName.Text, txtEmail.Text);                    
                     }
                 }
                 catch (Exception ex)

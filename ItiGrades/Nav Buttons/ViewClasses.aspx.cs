@@ -9,7 +9,7 @@ using System.Data;
 
 namespace ItiGrades.Nav_Buttons
 {
-    public partial class ViewClasses : System.Web.UI.Page
+    public partial class ViewClasses : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,52 +35,7 @@ namespace ItiGrades.Nav_Buttons
             ddlSections.Visible = true;
         }
 
-        private void TempMethod()
-        {
-            Instructor instructor = (Instructor)Session["Instructor"];
-            TermClass termclass = new TermClass();
-            Student student = new Student();
-            Section section = new Section();
-            Class clas = new Class();
-
-            List<DataTable> dtList = new List<DataTable>();
-            ClassList cList = new ClassList();
-            TermClassList tClassList = new TermClassList();
-
-            cList = cList.GetAll();
-            tClassList = tClassList.GetAll();
-
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Class Name");
-            dt.Columns.Add("Instructor Name");
-            dt.Columns.Add("Student Name");
-            dt.Columns.Add("Section Name");
-
-            foreach (TermClass tc in tClassList.List)
-            {
-                if (tc.InstructorId == instructor.Id)
-                {
-                    clas = clas.GetById(tc.ClassId);
-                    student = student.GetById(tc.StudentId);
-                    section = section.GetById(tc.SectionId);
-
-                    string className = clas.Name;
-                    string instructorName = instructor.FirstName + " " + instructor.LastName;
-                    string studentName = student.FirstName + " " + student.LastName;
-                    string sectionName = section.Name;
-
-                    foreach (Class classes in cList.List)
-                    {
-                        if (className == classes.Name)
-                        {
-                            dt.Rows.Add(className, instructorName, studentName, sectionName);
-                        }
-                    }
-                }
-            }
-        }
-
+        
         protected void ddlSections_SelectedIndexChanged(object sender, EventArgs e)
         {
             Instructor instructor = (Instructor)Session["Instructor"];

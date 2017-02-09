@@ -22,6 +22,42 @@ namespace ItiGrades {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblInstructor;
         
         /// <summary>
+        /// lblLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLogout;
+        
+        /// <summary>
+        /// lblEditGrades control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEditGrades;
+        
+        /// <summary>
+        /// lblViewClasses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblViewClasses;
+        
+        /// <summary>
+        /// lblClassSetup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClassSetup;
+        
+        /// <summary>
         /// lblSignUp control.
         /// </summary>
         /// <remarks>

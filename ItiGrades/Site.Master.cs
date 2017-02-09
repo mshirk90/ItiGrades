@@ -24,6 +24,10 @@ namespace ItiGrades
                 Instructor instructor = (Instructor)Session["Instructor"];
                 Menu menu = (Menu)this.FindControl("Menu1");
                 lblSignUp.Visible = false;
+                lblEditGrades.Visible = true;
+                lblViewClasses.Visible = true;
+                lblClassSetup.Visible = true;
+                lblLogout.Visible = true;
                 lblInstructor.InnerText = (String.Format("[Welcome {0}]", instructor.FirstName));
             }
         }

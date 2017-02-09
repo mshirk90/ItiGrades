@@ -48,20 +48,28 @@ namespace ItiGrades.Account
             }
             else
             {
-                if (this.RememberMe.Checked == true)
+                if (this.RememberMe.Checked == true && instructor.Version == 0 && instructor.IsPasswordPending == true)
                 {
+                    Session.Add("Instructor", instructor);
+                    Response.Redirect("ChangePassword.aspx");
+
                     Response.Cookies["ITICookies"]["UserName"] = txtEmail.Text;
                     Response.Cookies["ITICookies"]["Password"] = txtPassword.Text;
                     Response.Cookies["ITICookies"]["RememberMe"] = "true";
                     Response.Cookies["ITICookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
                     Response.Cookies["ITICookies"].Expires = DateTime.MaxValue;
                 }
-                Session.Add("Instructor", instructor);
-                //if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("ExpandedPost"))
-                //{
-                //    string URL = Request.QueryString["returnURL"] + "&userId=" + user.Id;
-                //    Response.Redirect(URL);
-                //}
+                else if (this.RememberMe.Checked == true)
+                {
+                    Response.Cookies["ITICookies"]["UserName"] = txtEmail.Text;
+                    Response.Cookies["ITICookies"]["Password"] = txtPassword.Text;
+                    Response.Cookies["ITICookies"]["RememberMe"] = "true";
+                    Response.Cookies["ITICookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
+                    Response.Cookies["ITICookies"].Expires = DateTime.MaxValue;
+                    Session.Add("Instructor", instructor);
+                }
+               
+           
                 if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Profile"))
                 {
                     string URL = Request.QueryString["returnURL"];
