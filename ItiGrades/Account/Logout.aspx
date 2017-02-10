@@ -10,7 +10,7 @@
         <br />
     </div>
    
-        <h1 style="margin:auto; text-align:center; font: 42px;">You have successfully logged out.</h1>
+       <p style="margin:auto; text-align:center; font-size: 42px;">You have successfully logged out.</p>
 
    <div class="space">
         <br />

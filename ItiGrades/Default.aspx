@@ -18,30 +18,39 @@
     </section>
 
      <!-- One -->
-<div id="sectionMain" runat="server">    
+<div id="sectionMain" runat="server">   
+     
     <section id="one" class="wrapper style1">        
         <header class="major">
             <h2 id="lblHeader" runat="server">Ipsum feugiat consequat</h2>
             <p>Navigate using the buttons below</p>
         </header>
-        <div class="container">
+
+        <div class="container" style="width:98% !important;">
             <div class="row">
-                <div class="4u">
-                    <section class="special box">
+                 <div class="4u" style="width: 24.5% !important;">
+                    <section class="special box" style="height: 375px !important;">
+                        <a href="Nav%20Buttons/EditAttendance.aspx"><i class="icon fa-bell major"></i></a>
+                        <h3>Edit Attendance</h3>
+                        <p>Enter/Edit attendance here.</p>
+                    </section>
+                </div>
+                <div class="4u" style="width: 24.5% !important;">
+                    <section class="special box" style="height: 375px !important;">
                         <a href="Nav%20Buttons/EditGrades.aspx"><i class="icon fa-area-chart major"></i></a>
                         <h3>Edit Grades</h3>
                         <p>Enter/edit student grades here.</p>
                     </section>
                 </div>
-                <div class="4u">
-                    <section class="special box">
-                       <a href="Nav%20Buttons/ViewClasses.aspx"><i class="icon fa-refresh major"></i></a>
+                <div class="4u" style="width: 24.5% !important;">
+                    <section class="special box" style="height: 375px !important;">
+                       <a href="Nav%20Buttons/ViewClasses.aspx"><i class="icon fa-briefcase major"></i></a>
                         <h3>View all classes</h3>
                         <p>View classes, students and grades.</p>
                     </section>
                 </div>
-                <div class="4u">
-                    <section class="special box">
+                <div class="4u" style="width: 24.5% !important;">
+                    <section class="special box" style="height: 375px !important;">
                         <a href="Nav%20Buttons/InstructorSetup.aspx"><i class="icon fa-cog major"></i></a>
                         <h3>Class Setup</h3>
                         <p>Add your classes students for this term.</p>

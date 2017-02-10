@@ -29,14 +29,14 @@
     <!-- Header -->
     <header id="header" class="skel-layers-fixed">
         <h1><a href="#">ITI Technical College</a></h1>
-        <label id="lblInstructor" runat="server" style="padding-left: 50%"></label>
+        <label id="lblInstructor" runat="server" style="padding-left: 40%"></label>
         <nav id="nav">            
             <ul >
                 <li><a href="../Default.aspx">Home</a></li>
                 <li><asp:Label runat="server" Visible="false" ID="lblLogout"><a href="Account/Logout.aspx">Logout</a></asp:Label></li>
-                <li><asp:Label runat="server" Visible="false" ID="lblEditGrades"><a href="Nav%20Buttons/EditGrades.aspx">EditGrades</a></asp:Label></li>
-                <li><asp:Label runat="server" Visible="false" ID="lblViewClasses"><a href="Nav%20Buttons/InstructorSetup.aspx">View Classes</a></asp:Label></li>
-                <li><asp:Label runat="server" Visible="false" ID="lblClassSetup"><a href="Nav%20Buttons/ViewClasses.aspx">Class Setup</a></asp:Label></li>
+                <li><asp:Label runat="server" Visible="false" ID="lblEditGrades"><a href="/Nav%20Buttons/EditGrades.aspx">EditGrades</a></asp:Label></li>
+                <li><asp:Label runat="server" Visible="false" ID="lblViewClasses"><a href="/Nav%20Buttons/ViewClasses.aspx">View Classes</a></asp:Label></li>
+                <li><asp:Label runat="server" Visible="false" ID="lblClassSetup"><a href="/Nav%20Buttons/InstructorSetup.aspx">Class Setup</a></asp:Label></li>
                 <li><asp:Label ID="lblSignUp" runat="server"><a href="../Account/Register.aspx" class="button special">Sign Up</a></asp:Label></li>
             </ul>
         </nav>

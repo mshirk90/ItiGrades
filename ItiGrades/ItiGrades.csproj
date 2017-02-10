@@ -216,6 +216,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\banner.jpg" />
     <Content Include="left-sidebar.html" />
+    <Content Include="Nav Buttons\EditAttendance.aspx" />
     <Content Include="Nav Buttons\EditGrades.aspx" />
     <Content Include="Nav Buttons\InstructorSetup.aspx" />
     <Content Include="Nav Buttons\ViewClasses.aspx" />
@@ -364,6 +365,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Nav Buttons\EditAttendance.aspx.cs">
+      <DependentUpon>EditAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nav Buttons\EditAttendance.aspx.designer.cs">
+      <DependentUpon>EditAttendance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Nav Buttons\EditGrades.aspx.cs">
       <DependentUpon>EditGrades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

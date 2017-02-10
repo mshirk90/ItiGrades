@@ -10,7 +10,7 @@
 namespace ItiGrades.Nav_Buttons {
     
     
-    public partial class EditGrades {
+    public partial class EditAttendance {
         
         /// <summary>
         /// lblTitle control.
@@ -22,13 +22,13 @@ namespace ItiGrades.Nav_Buttons {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// btnViewClasses control.
+        /// btnSetupClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewClasses;
+        protected global::System.Web.UI.WebControls.Button btnSetupClass;
         
         /// <summary>
         /// ddlSections control.
@@ -40,39 +40,57 @@ namespace ItiGrades.Nav_Buttons {
         protected global::System.Web.UI.WebControls.DropDownList ddlSections;
         
         /// <summary>
-        /// lblOrderBy control.
+        /// ddlDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderBy;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
         
         /// <summary>
-        /// ddlSelection control.
+        /// ddlSelectClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSelection;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelectClass;
         
         /// <summary>
-        /// ddlDirection control.
+        /// btnEditAttendance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDirection;
+        protected global::System.Web.UI.WebControls.Button btnEditAttendance;
         
         /// <summary>
-        /// gvViewClass control.
+        /// lblStatus1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvViewClass;
+        protected global::System.Web.UI.WebControls.Label lblStatus1;
+        
+        /// <summary>
+        /// lblStatus2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus2;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

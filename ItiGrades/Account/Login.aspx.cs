@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using BusinessObjects;
 
 namespace ItiGrades.Account
@@ -23,7 +14,7 @@ namespace ItiGrades.Account
 
 
             // READ THE COOKIE
-            if (Request.Cookies["ITICookies"] != null /*&& Convert.ToBoolean(Request.Cookies["ITICookies"]["RememberMe"]) == true*/)
+            if (Request.Cookies["ITICookies"] != null && Convert.ToBoolean(Request.Cookies["ITICookies"]["RememberMe"]) == true)
             {
                 txtEmail.Text = Request.Cookies["ITICookies"]["UserName"];
                 txtPassword.Text = Request.Cookies["ITICookies"]["Password"];
@@ -40,7 +31,22 @@ namespace ItiGrades.Account
             if (instructor == null)
             {
                 lblStatus.Text = "Invalid Username or Password";
+                txtPassword.Text = "";
+                Response.Redirect("Login.aspx");
             }
+
+            if (this.RememberMe.Checked == true && instructor.Version == 0 && instructor.IsPasswordPending == true)
+            {
+                Response.Cookies["ITICookies"]["UserName"] = txtEmail.Text;
+                Response.Cookies["ITICookies"]["Password"] = txtPassword.Text;
+                Response.Cookies["ITICookies"]["RememberMe"] = "true";
+                Response.Cookies["ITICookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
+                Response.Cookies["ITICookies"].Expires = DateTime.MaxValue;
+
+                Session.Add("Instructor", instructor);
+                Response.Redirect("ChangePassword.aspx");
+            }
+
             else if (instructor.Version == 0 && instructor.IsPasswordPending == true)
             {
                 Session.Add("Instructor", instructor);
@@ -48,18 +54,8 @@ namespace ItiGrades.Account
             }
             else
             {
-                if (this.RememberMe.Checked == true && instructor.Version == 0 && instructor.IsPasswordPending == true)
-                {
-                    Session.Add("Instructor", instructor);
-                    Response.Redirect("ChangePassword.aspx");
-
-                    Response.Cookies["ITICookies"]["UserName"] = txtEmail.Text;
-                    Response.Cookies["ITICookies"]["Password"] = txtPassword.Text;
-                    Response.Cookies["ITICookies"]["RememberMe"] = "true";
-                    Response.Cookies["ITICookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
-                    Response.Cookies["ITICookies"].Expires = DateTime.MaxValue;
-                }
-                else if (this.RememberMe.Checked == true)
+              
+                if (this.RememberMe.Checked == true)
                 {
                     Response.Cookies["ITICookies"]["UserName"] = txtEmail.Text;
                     Response.Cookies["ITICookies"]["Password"] = txtPassword.Text;
@@ -70,11 +66,6 @@ namespace ItiGrades.Account
                 }
                
            
-                if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Profile"))
-                {
-                    string URL = Request.QueryString["returnURL"];
-                    Response.Redirect(URL);
-                }
                 if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Default"))
                 {
                     string URL = Request.QueryString["returnURL"];
@@ -82,7 +73,8 @@ namespace ItiGrades.Account
                 }
                 else
                 {
-                    Response.Redirect("../Default.aspx?userId=" + instructor.Id);
+                    Session.Add("Instructor", instructor);
+                    Response.Redirect("../Default.aspx?userId=" + instructor.Id);                    
                 }
             }
         }
