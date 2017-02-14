@@ -49,6 +49,25 @@ namespace BusinessObjects
             }
             return this;
         }
+
+        public TermClassList GetByStudentId(Guid studentId)
+        {
+            Database database = new Database("DB_109645_projectfinal");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandText = "tblTermClassGetByStudentId";
+            database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = studentId;
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                TermClass termclass = new TermClass();
+                termclass.Initialize(dr);
+                termclass.InitializeBusinessData(dr);
+                _List.Add(termclass);
+            }
+            return this;
+        }
+
         public TermClassList Save()
         {
             foreach (TermClass termclass in _List)

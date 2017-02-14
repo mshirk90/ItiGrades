@@ -83,7 +83,6 @@ namespace BusinessObjects
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblAttendanceINSERT";
                 database.Command.Parameters.Add("@Absent", SqlDbType.Bit).Value = _Absent;
-                database.Command.Parameters.Add("@TotalAbsences", SqlDbType.Int).Value = _TotalAbsences;
                 database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = _StudentId;
                 database.Command.Parameters.Add("@ClassId", SqlDbType.UniqueIdentifier).Value = _ClassId;
 
@@ -115,7 +114,7 @@ namespace BusinessObjects
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblAttendanceUPDATE";
                 database.Command.Parameters.Add("@Absent", SqlDbType.Bit).Value = _Absent;
-                database.Command.Parameters.Add("@TotalAbsences", SqlDbType.Int).Value = _TotalAbsences;
+                database.Command.Parameters.Add("@TotalAbsences", SqlDbType.Bit).Value = _TotalAbsences;
                 database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = _StudentId;
                 database.Command.Parameters.Add("@ClassId", SqlDbType.UniqueIdentifier).Value = _ClassId;
 
@@ -185,6 +184,26 @@ namespace BusinessObjects
 
             return this;
         }
+        public Attendance GetByStudentId(Guid studentId)
+        {
+            Database database = new Database("DB_109645_projectfinal");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandText = "tblAttendanceGetByStudentId";
+            database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = studentId;
+            dt = database.ExecuteQuery();
+            if (dt != null && dt.Rows.Count >= 1)
+            {
+                DataRow dr = dt.Rows[0];
+                base.Initialize(dr);
+                InitializeBusinessData(dr);
+                base.IsNew = false;
+                base.IsDirty = false;
+            }
+
+            return this;
+        }
+
         public void InitializeBusinessData(DataRow dr)
         {
 

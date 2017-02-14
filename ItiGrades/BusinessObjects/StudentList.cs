@@ -49,6 +49,25 @@ namespace BusinessObjects
             }
             return this;
         }
+
+        public StudentList GetStudentsById(Guid Id)
+        {
+            Database database = new Database("DB_109645_projectfinal");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblStudentGetById";
+            database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = Id;
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Student student = new Student();
+                student.Initialize(dr);
+                student.InitializeBusinessData(dr);
+                _List.Add(student);
+            }
+            return this;
+        }
+
         public StudentList Save()
         {
             foreach (Student student in _List)

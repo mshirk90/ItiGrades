@@ -134,6 +134,7 @@ namespace ItiGrades.Nav_Buttons
                     Student student = new Student();
                     student.FirstName = row[0].ToString();
                     student.LastName = row[1].ToString();
+                    student.FullName = student.FirstName + " " + student.LastName;
                     student.DepartmentId = departmentId;
                     student.Save();
                     studentList.Add(student);

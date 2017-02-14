@@ -22,13 +22,13 @@ namespace ItiGrades.Nav_Buttons {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// btnSetupClass control.
+        /// btnSelectClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSetupClass;
+        protected global::System.Web.UI.WebControls.Button btnSelectClass;
         
         /// <summary>
         /// ddlSections control.
@@ -65,6 +65,24 @@ namespace ItiGrades.Nav_Buttons {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditAttendance;
+        
+        /// <summary>
+        /// ddlSelectStudent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelectStudent;
+        
+        /// <summary>
+        /// btnMarkAbsent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMarkAbsent;
         
         /// <summary>
         /// lblStatus1 control.

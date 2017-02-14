@@ -18,7 +18,7 @@
                         <%--<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>--%>
                         <ul class="actions">
                             <li>
-                                <asp:Button ID="btnSetupClass" class="button alt" runat="server" Text="View/Edit Attendance" OnClick="btnSetupClass_Click" /></li>
+                                <asp:Button ID="btnSelectClass" class="button alt" runat="server" Text="View/Edit Attendance" OnClick="btnSelectClass_Click" /></li>
                         </ul>
                     </section>
                     <hr />
@@ -38,15 +38,22 @@
 
                                 <asp:DropDownList ID="ddlSelectClass" Visible="false" runat="server" DataTextField="Name" DataValueField="Id" Style="width: auto;"></asp:DropDownList>
 
-                                <asp:Button ID="btnEditAttendance" Visible="false" class="button alt" runat="server" Text="Edit Attendance" OnClick="btnEditAttendance_Click"  />
+                                <asp:Button ID="btnEditAttendance" Visible="false" class="button alt" runat="server" Text="Edit Attendance" OnClick="btnEditAttendance_Click" />
+                                <div style="white-space:nowrap; margin-bottom: 10px;">
+                                <asp:DropDownList ID="ddlSelectStudent" Visible="false" runat="server" DataTextField="FullName" DataValueField="Id" Style="width: auto; display:inline-block;"></asp:DropDownList>
+                                 <asp:Button ID="btnMarkAbsent" Visible="false" class="button alt" runat="server" Text="Mark Absent" style="display:inline-block;" OnClick="btnMarkAbsent_Click" />
+                            </div>
                             </div>
 
 
 
                             <div>
-                                <asp:Label ID="lblStatus1" runat="server"></asp:Label><asp:Label ID="lblStatus2" runat="server"></asp:Label></div></div><div>
+                                <asp:Label ID="lblStatus1" runat="server"></asp:Label><asp:Label ID="lblStatus2" runat="server"></asp:Label>
+                            </div>
                         </div>
-                        <asp:GridView ID="GridView1" runat="server">
+                        <div>
+                        </div>
+                        <asp:GridView ID="GridView1" runat="server">                                         
                         </asp:GridView>
                     </section>
                 </div>

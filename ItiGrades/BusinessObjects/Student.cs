@@ -14,6 +14,7 @@ namespace BusinessObjects
         #region Private Members
         private string _FirstName = string.Empty;
         private string _LastName = string.Empty;
+        private string _FullName = string.Empty;
         private Guid _DepartmentId = Guid.Empty;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         #endregion
@@ -28,6 +29,12 @@ namespace BusinessObjects
         {
             get { return _LastName; }
             set { _LastName = value; }
+        }
+
+        public String FullName
+        {
+            get { return _FullName; }
+            set { _FullName = value; }
         }
 
         public BrokenRuleList BrokenRules
@@ -65,6 +72,7 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentINSERT";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
+                database.Command.Parameters.Add("@FullName", SqlDbType.VarChar).Value = _FullName;
                 database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = _DepartmentId;
 
 
@@ -97,6 +105,7 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblStudentUPDATE";
                 database.Command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = _FirstName;
                 database.Command.Parameters.Add("@LastName", SqlDbType.VarChar).Value = _LastName;
+                database.Command.Parameters.Add("@FullName", SqlDbType.VarChar).Value = _FullName;
                 database.Command.Parameters.Add("@DepartmentId", SqlDbType.UniqueIdentifier).Value = _DepartmentId;
 
                 // Provides the empty buckets
@@ -189,6 +198,7 @@ namespace BusinessObjects
             
             _FirstName = dr["FirstName"].ToString();
             _LastName = dr["LastName"].ToString();
+            _FullName = dr["FullName"].ToString();
             _DepartmentId = (Guid)dr["DepartmentId"];
         }
         public Boolean IsSavable()
