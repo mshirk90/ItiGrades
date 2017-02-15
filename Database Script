@@ -1,0 +1,1924 @@
+USE [master]
+GO
+/****** Object:  Database [DB_109645_projectfinal]    Script Date: 2/14/2017 7:19:24 PM ******/
+CREATE DATABASE [DB_109645_projectfinal]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'DB_109645_projectfinal_data', FILENAME = N'e:\sqldata\DB_109645_projectfinal_data.mdf' , SIZE = 8192KB , MAXSIZE = 2048000KB , FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'DB_109645_projectfinal_log', FILENAME = N'f:\sqllog\DB_109645_projectfinal_log.ldf' , SIZE = 18312KB , MAXSIZE = 1024000KB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET COMPATIBILITY_LEVEL = 130
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [DB_109645_projectfinal].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET  MULTI_USER 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET QUERY_STORE (OPERATION_MODE = READ_ONLY, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 3), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 30, MAX_STORAGE_SIZE_MB = 100, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO)
+GO
+USE [DB_109645_projectfinal]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [DB_109645_projectfinal]
+GO
+/****** Object:  Table [dbo].[tblAttendance]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblAttendance](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Absent] [bit] NOT NULL,
+	[TotalAbsences] [int] NULL,
+	[StudentId] [uniqueidentifier] NOT NULL,
+	[ClassId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_tblAttendance] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblClass]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblClass](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Name] [varchar](max) NOT NULL,
+	[DepartmentId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_tblClass] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblDepartment]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblDepartment](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Name] [varchar](max) NOT NULL,
+ CONSTRAINT [PK_tblDepartment] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblEmailConfig]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblEmailConfig](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[DisplayName] [varchar](50) NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Host] [varchar](50) NOT NULL,
+	[Port] [int] NOT NULL,
+ CONSTRAINT [PK_tblEmailConfig] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblGrade]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblGrade](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [decimal](18, 0) NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[LetterGrade] [varchar](1) NOT NULL,
+	[Grade] [decimal](18, 0) NOT NULL,
+	[StudentId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_tblGrade] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblGradeType]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblGradeType](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [decimal](18, 0) NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Type] [varchar](max) NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Weight] [decimal](18, 0) NULL,
+	[GradeId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_tblGradeType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblInstructor]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblInstructor](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[FirstName] [varchar](max) NOT NULL,
+	[LastName] [varchar](max) NOT NULL,
+	[Email] [varchar](max) NOT NULL,
+	[Password] [varchar](max) NOT NULL,
+	[IsPasswordPending] [bit] NOT NULL,
+ CONSTRAINT [PK_tblInstructor] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblSection]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblSection](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Name] [varchar](max) NOT NULL,
+ CONSTRAINT [PK_tblSection] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblStudent]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblStudent](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[FirstName] [varchar](max) NOT NULL,
+	[LastName] [varchar](max) NOT NULL,
+	[FullName] [varchar](max) NULL,
+	[DepartmentId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_tblStudent] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblTermClass]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTermClass](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Version] [int] NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[ClassId] [uniqueidentifier] NOT NULL,
+	[InstructorId] [uniqueidentifier] NOT NULL,
+	[StudentId] [uniqueidentifier] NOT NULL,
+	[SectionId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_tblTermClass] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[tblAttendance] ADD  CONSTRAINT [DF_tblAttendance_Absent]  DEFAULT ('0') FOR [Absent]
+GO
+ALTER TABLE [dbo].[tblInstructor] ADD  CONSTRAINT [DF_tblInstructor_IsPasswordPending]  DEFAULT ('0') FOR [IsPasswordPending]
+GO
+ALTER TABLE [dbo].[tblAttendance]  WITH CHECK ADD  CONSTRAINT [FK_tblAttendance_tblClass] FOREIGN KEY([ClassId])
+REFERENCES [dbo].[tblClass] ([Id])
+GO
+ALTER TABLE [dbo].[tblAttendance] CHECK CONSTRAINT [FK_tblAttendance_tblClass]
+GO
+ALTER TABLE [dbo].[tblAttendance]  WITH CHECK ADD  CONSTRAINT [FK_tblAttendance_tblStudent] FOREIGN KEY([StudentId])
+REFERENCES [dbo].[tblStudent] ([Id])
+GO
+ALTER TABLE [dbo].[tblAttendance] CHECK CONSTRAINT [FK_tblAttendance_tblStudent]
+GO
+ALTER TABLE [dbo].[tblClass]  WITH CHECK ADD  CONSTRAINT [FK_tblClass_tblDepartment] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[tblDepartment] ([Id])
+GO
+ALTER TABLE [dbo].[tblClass] CHECK CONSTRAINT [FK_tblClass_tblDepartment]
+GO
+ALTER TABLE [dbo].[tblGrade]  WITH CHECK ADD  CONSTRAINT [FK_tblGrade_tblStudent] FOREIGN KEY([StudentId])
+REFERENCES [dbo].[tblStudent] ([Id])
+GO
+ALTER TABLE [dbo].[tblGrade] CHECK CONSTRAINT [FK_tblGrade_tblStudent]
+GO
+ALTER TABLE [dbo].[tblGradeType]  WITH CHECK ADD  CONSTRAINT [FK_tblGradeType_tblGrade] FOREIGN KEY([GradeId])
+REFERENCES [dbo].[tblGrade] ([Id])
+GO
+ALTER TABLE [dbo].[tblGradeType] CHECK CONSTRAINT [FK_tblGradeType_tblGrade]
+GO
+ALTER TABLE [dbo].[tblStudent]  WITH CHECK ADD  CONSTRAINT [FK_tblStudent_tblDepartment] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[tblDepartment] ([Id])
+GO
+ALTER TABLE [dbo].[tblStudent] CHECK CONSTRAINT [FK_tblStudent_tblDepartment]
+GO
+ALTER TABLE [dbo].[tblTermClass]  WITH CHECK ADD  CONSTRAINT [FK_tblTermClass_tblClass] FOREIGN KEY([ClassId])
+REFERENCES [dbo].[tblClass] ([Id])
+GO
+ALTER TABLE [dbo].[tblTermClass] CHECK CONSTRAINT [FK_tblTermClass_tblClass]
+GO
+ALTER TABLE [dbo].[tblTermClass]  WITH CHECK ADD  CONSTRAINT [FK_tblTermClass_tblInstructor] FOREIGN KEY([InstructorId])
+REFERENCES [dbo].[tblInstructor] ([Id])
+GO
+ALTER TABLE [dbo].[tblTermClass] CHECK CONSTRAINT [FK_tblTermClass_tblInstructor]
+GO
+ALTER TABLE [dbo].[tblTermClass]  WITH CHECK ADD  CONSTRAINT [FK_tblTermClass_tblSection] FOREIGN KEY([SectionId])
+REFERENCES [dbo].[tblSection] ([Id])
+GO
+ALTER TABLE [dbo].[tblTermClass] CHECK CONSTRAINT [FK_tblTermClass_tblSection]
+GO
+ALTER TABLE [dbo].[tblTermClass]  WITH CHECK ADD  CONSTRAINT [FK_tblTermClass_tblStudent] FOREIGN KEY([StudentId])
+REFERENCES [dbo].[tblStudent] ([Id])
+GO
+ALTER TABLE [dbo].[tblTermClass] CHECK CONSTRAINT [FK_tblTermClass_tblStudent]
+GO
+/****** Object:  StoredProcedure [dbo].[tblAttendanceDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblAttendanceDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblAttendance
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblAttendanceGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblAttendanceGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblAttendance
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblAttendanceGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE[dbo].[tblAttendanceGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblAttendance
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblAttendanceGetByStudentId]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[tblAttendanceGetByStudentId]
+	@StudentId as UNIQUEIDENTIFIER
+AS
+BEGIN
+	SELECT * 
+		FROM tblAttendance
+	WHERE StudentId = @StudentId
+	AND [Deleted] = 'false'
+	ORDER BY [LastUpdated]  DESC
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblAttendanceInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblAttendanceInsert]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@TotalAbsences as int,
+	@Absent as bit,
+	@StudentId as uniqueidentifier,
+	@ClassId as uniqueidentifier
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblAttendance
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[TotalAbsences], [Absent], [StudentId], [ClassId]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@TotalAbsences, @Absent,  @StudentId, @ClassId
+	)
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblAttendanceUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblAttendanceUpdate]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@TotalAbsences as int,
+	@Absent as bit,
+	@StudentId as uniqueidentifier,
+	@ClassId as uniqueidentifier
+
+
+AS
+BEGIN
+
+	UPDATE tblAttendance
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			[TotalAbsences] = @TotalAbsences,
+			[Absent] = @Absent,
+			[StudentId] = @StudentId,
+			[ClassId] = @ClassId			
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblClassDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblClassDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblClass
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblClassGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblClassGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblClass
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblClassGetByDepartmentId]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[tblClassGetByDepartmentId]
+	@DepartmentID UNIQUEIDENTIFIER
+AS
+BEGIN
+	SELECT * 
+		FROM tblClass
+	WHERE DepartmentId = @DepartmentId
+	AND [Deleted] = 'false'
+	ORDER BY [LastUpdated]  DESC
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblClassGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblClassGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblClass
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblClassInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblClassInsert] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Name as varchar(MAX),
+	@DepartmentId AS UNIQUEIDENTIFIER
+	
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblClass
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[Name], [DepartmentId]
+		
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@Name, @DepartmentId
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblClassUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblClassUpdate] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Name as varchar(MAX),
+	@DepartmentId AS UNIQUEIDENTIFIER
+
+
+AS
+BEGIN
+
+	UPDATE tblClass
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			[Name] = @Name,
+			[DepartmentId] = @DepartmentId
+
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblDepartmentDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblDepartmentDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblDepartment
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblDepartmentGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblDepartmentGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblDepartment
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblDepartmentGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblDepartmentGetById]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblDepartment
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblDepartmentGetIdByDepartmentName]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[tblDepartmentGetIdByDepartmentName]
+	@Name varchar(MAX)
+AS
+BEGIN
+	SELECT Id 
+		FROM tblDepartment
+	WHERE "Name" = @Name
+	AND [Deleted] = 'false'
+	ORDER BY [LastUpdated]  DESC
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[tblDepartmentInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE  [dbo].[tblDepartmentInsert] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Name as varchar(MAX)
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO  tblDepartment
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[Name]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@Name
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblDepartmentUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblDepartmentUpdate] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Name as Varchar
+
+
+AS
+BEGIN
+
+	UPDATE tblDepartment
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			[Name] = @Name			
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblEmailConfigGetByDisplayName]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[tblEmailConfigGetByDisplayName]
+	@DisplayName as VARCHAR(50)
+AS
+BEGIN
+	SELECT * 
+		FROM tblEmailConfig
+	WHERE DisplayName = @DisplayName
+	AND [Deleted] = 'false'
+
+END
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblEmailConfigINSERT]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblEmailConfigINSERT] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,	
+	@Email  AS VARCHAR(30),
+	@Host AS VARCHAR(MAX),
+	@DisplayName AS VARCHAR(50),
+	@Port AS int,
+	@Password AS VARCHAR(MAX)
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblEmailConfig
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[Email], [Host], [DisplayName], [Port], 
+		[Password]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@Email, @Host, @DisplayName, @Port, @Password
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblGradeDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblGrade
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblGradeGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblGrade
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblGradeGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblGrade
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblGradeInsert]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@LetterGrade as varchar(max),
+	@Grade as Decimal(18,4),
+	@StudentId as uniqueidentifier
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblGrade
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[LetterGrade], [Grade], [StudentId]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@LetterGrade, @Grade, @StudentId
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeTypeGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblGradeTypeGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblGradeType
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeTypeGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblGradeTypeGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblGradeType
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeTypeInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblGradeTypeInsert]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Type as varchar(max),
+	@Date as datetime,
+	@Weight as Decimal(18,4),
+	@GradeId as uniqueidentifier
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblGradeType
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[Type], [Date], [Weight], [GradeId]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@Type, @Date, @Weight, @GradeId
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeTypeUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblGradeTypeUpdate]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Type as varchar(max),
+	@Date as datetime,
+	@Weight as Decimal(18,4),
+	@GradeId as uniqueidentifier
+
+
+AS
+BEGIN
+
+	UPDATE tblGradeType
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			[Type] = @Type,
+			[Date] = @Date,
+			[Weight] = @Weight,
+			[GradeId] = @GradeId			
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblGradeUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblGradeUpdate]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@LetterGrade as varchar,
+	@Grade as decimal(18,4),
+	@StudentId as uniqueidentifier
+
+
+AS
+BEGIN
+
+	UPDATE tblGrade
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			[LetterGrade] = @LetterGrade,
+			[Grade] = @Grade,
+			[StudentId] = @StudentId			
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblInstructorDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblInstructorDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblInstructor
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblInstructorGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create PROCEDURE [dbo].[tblInstructorGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblInstructor
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblInstructorGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[tblInstructorGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblInstructor
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblInstructorInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblInstructorInsert] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@FirstName as varchar(MAX),
+	@LastName as varchar(MAX),
+	@Email as varchar(MAX),
+	@Password as varchar(MAX),
+	@IsPasswordPending as bit
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblInstructor
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[FirstName], [LastName], [Email], [Password],
+		[IsPasswordPending]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@FirstName, @LastName, @Email, @Password,
+		@IsPasswordPending
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblInstructorLogin]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblInstructorLogin]
+@Email as varchar(MAX),
+@Password as varchar(MAX)
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT *
+	from tblInstructor
+	where Email = @Email and
+	[Password] = @Password and
+	Deleted = 'false'
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblInstructorUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblInstructorUpdate]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@FirstName as Varchar(MAX),
+	@LastName as Varchar(MAX),
+	@Email as varchar(MAX),
+	@Password as varchar(MAX),
+	@IsPasswordPending as bit
+
+
+AS
+BEGIN
+
+	UPDATE tblInstructor
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			[FirstName] = @FirstName,
+			[LastName] = @LastName,
+			[Email] = @Email,
+			[Password] = @Password,
+			[IsPasswordPending] = @IsPasswordPending			
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblSectionGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblSectionGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblSection
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblSectionGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblSectionGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblSection
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblSectionInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblSectionInsert] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@Name as varchar(MAX)
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblSection
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[Name]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@Name
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblStudentDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblStudentDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblStudent
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblStudentGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblStudentGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblStudent
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblStudentGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblStudentGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblStudent
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblStudentInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblStudentInsert] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@FirstName as varchar(MAX),
+	@LastName as varchar(MAX),
+	@FullName as varchar(MAX),
+	@DepartmentId as UNIQUEIDENTIFIER
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblStudent
+	(
+		[Id], [Version], [LastUpdated], [Deleted],
+		[FirstName], [LastName], [FullName], [DepartmentId]
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted,
+		@FirstName, @LastName, @FullName, @DepartmentId
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblStudentLogin]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE  [dbo].[tblStudentLogin]
+@Email as Varchar(MAX),
+@Password as Varchar(MAX)
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT *
+	from  tblStudent
+	where Email = @Email and
+	[Password] = @Password and
+	Deleted = 'false'
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblStudentUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblStudentUpdate] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@FirstName as Varchar(MAX),
+	@LastName as Varchar(MAX),
+	@FullName as Varchar(MAX),
+	@DepartmentId as UNIQUEIDENTIFIER
+
+
+AS
+BEGIN
+
+	UPDATE tblStudent
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			[FirstName] = @FirstName,
+			[LastName] = @LastName,
+			[FullName] = @FullName,
+			[DepartmentId] = @DepartmentId	
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassDelete]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblTermClassDelete]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+
+AS
+BEGIN	
+
+
+	UPDATE tblTermClass
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'true',
+			[Deleted] = @Deleted
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassGetAll]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblTermClassGetAll]
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblTermClass
+	
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassGetByClassId]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[tblTermClassGetByClassId]
+	@ClassId UNIQUEIDENTIFIER
+AS
+BEGIN
+	SELECT * 
+		FROM tblTermClass
+	WHERE ClassId = @ClassId
+	AND [Deleted] = 'false'
+	ORDER BY [LastUpdated]  DESC
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassGetById]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblTermClassGetById]
+	@Id AS UNIQUEIDENTIFIER = null output
+AS
+BEGIN	
+	SELECT *
+	FROM tblTermClass
+	WHERE [Id] = @Id AND [Deleted] = 'false'
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassGetByInstructorId]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[tblTermClassGetByInstructorId]
+	@InstructorId UNIQUEIDENTIFIER
+AS
+BEGIN
+	SELECT * 
+		FROM tblTermClass
+	WHERE InstructorId = @InstructorId
+	AND [Deleted] = 'false'
+	ORDER BY [LastUpdated]  DESC
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassGetByStudentId]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[tblTermClassGetByStudentId]
+	@StudentId UNIQUEIDENTIFIER
+AS
+BEGIN
+	SELECT * 
+		FROM tblTermClass
+	WHERE StudentId = @StudentId
+	AND [Deleted] = 'false'
+	ORDER BY [LastUpdated]  DESC
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassInsert]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[tblTermClassInsert] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@InstructorId AS UNIQUEIDENTIFIER,
+	@ClassId AS UNIQUEIDENTIFIER,
+	@StudentId AS UNIQUEIDENTIFIER,
+	@SectionId AS UNIQUEIDENTIFIER
+	
+
+
+AS
+BEGIN
+
+	SET @Id = NEWID() 
+	SET @Version = 0
+	SET @LastUpdated = GETDATE()
+	SET @Deleted = 'false'
+
+	INSERT INTO tblTermClass
+	(
+		[Id], [Version], [LastUpdated], [Deleted], [InstructorId], [ClassId], [StudentId], [SectionId]
+		
+	)
+	VALUES
+	(
+		@Id, @Version, @LastUpdated, @Deleted, @InstructorId, @ClassId, @StudentId, @SectionId
+	)
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[tblTermClassUpdate]    Script Date: 2/14/2017 7:19:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[tblTermClassUpdate] 
+	@Id AS UNIQUEIDENTIFIER = null output,
+	@Version AS INT = null output,
+	@LastUpdated AS DATETIME = null output,
+	@Deleted AS BIT = null output,
+	@InstructorId AS UNIQUEIDENTIFIER,
+	@ClassId AS UNIQUEIDENTIFIER,
+	@StudentId AS UNIQUEIDENTIFIER,
+	@SectionId AS UNIQUEIDENTIFIER
+
+
+AS
+BEGIN
+
+	UPDATE tblTermClass
+		SET @Version = [Version] + 1,
+			[Version] = @Version,
+			@LastUpdated = GETDATE(),
+			[LastUpdated] = @LastUpdated,
+
+			@Deleted = 'false',
+			[Deleted] = @Deleted,
+
+			
+			
+			[InstructorId] = @InstructorId,
+			[ClassId] = @ClassId,
+			[StudentId] = @StudentId,
+			[SectionId] = @SectionId			
+		
+		WHERE [Id] = @Id
+	
+END
+
+
+GO
+USE [master]
+GO
+ALTER DATABASE [DB_109645_projectfinal] SET  READ_WRITE 
+GO
