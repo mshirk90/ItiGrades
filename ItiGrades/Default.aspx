@@ -11,7 +11,7 @@
                    <asp:Label ID="lblSignUp" runat="server"><a href="Account/Register.aspx" class="button big special">Sign Up</a></asp:Label>
                 </li>
                 <li>
-                    <asp:Label ID="lblLogIn" runat="server"><a href="Account/Login.aspx" class="button big alt">Log In</a></asp:Label>
+                    <asp:Label ID="lblLogIn" runat="server"><a href="Account/Login.aspx" class="button big alt">Log In></a></asp:Label>
                 </li>
             </ul>
         </div>

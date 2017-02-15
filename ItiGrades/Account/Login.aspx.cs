@@ -14,12 +14,12 @@ namespace ItiGrades.Account
 
 
             // READ THE COOKIE
-            if (Request.Cookies["ITICookies"] != null && Convert.ToBoolean(Request.Cookies["ITICookies"]["RememberMe"]) == true)
-            {
-                txtEmail.Text = Request.Cookies["ITICookies"]["UserName"];
-                txtPassword.Text = Request.Cookies["ITICookies"]["Password"];
-                UserLogin();
-            }
+            //if (Request.Cookies["ITICookies"] != null && Convert.ToBoolean(Request.Cookies["ITICookies"]["RememberMe"]) == true)
+            //{
+            //    txtEmail.Text = Request.Cookies["ITICookies"]["UserName"];
+            //    txtPassword.Text = Request.Cookies["ITICookies"]["Password"];
+            //    UserLogin();
+            //}
         }
 
         private void UserLogin()

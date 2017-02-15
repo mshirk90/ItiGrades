@@ -99,6 +99,27 @@ namespace BusinessObjects
 
             return this;
         }
+
+        public AttendanceList GetAttendanceByStudentID(Guid studentId)
+        {
+            Database database = new Database("DB_109645_projectfinal");
+
+            database.Command.Parameters.Clear();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblAttendanceGetByStudentId";
+            database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = studentId;
+
+            DataTable dt = database.ExecuteQuery();
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Attendance attendance = new Attendance();
+                attendance.Initialize(dr);
+                attendance.InitializeBusinessData(dr);
+                _List.Add(attendance);
+            }
+            return this;
+        }
         #endregion
 
         #region Public Events

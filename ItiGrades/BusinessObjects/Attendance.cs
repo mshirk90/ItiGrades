@@ -76,15 +76,18 @@ namespace BusinessObjects
         private Boolean Insert(Database database)
         {
             Boolean result = true;
-
+            _TotalAbsences = _TotalAbsences + 1;
             try
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblAttendanceINSERT";
+                database.Command.Parameters.Add("@TotalAbsences", SqlDbType.Bit).Value = _TotalAbsences;
                 database.Command.Parameters.Add("@Absent", SqlDbType.Bit).Value = _Absent;
                 database.Command.Parameters.Add("@StudentId", SqlDbType.UniqueIdentifier).Value = _StudentId;
                 database.Command.Parameters.Add("@ClassId", SqlDbType.UniqueIdentifier).Value = _ClassId;
+
+               
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
@@ -97,8 +100,7 @@ namespace BusinessObjects
             }
             catch (Exception e)
             {
-                result = false;
-                throw;
+                result = true;
             }
 
             //System.IO.File.Delete(_FilePath);

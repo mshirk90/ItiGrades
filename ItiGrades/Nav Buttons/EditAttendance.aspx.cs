@@ -162,15 +162,7 @@ namespace ItiGrades.Nav_Buttons
             GridView1.DataBind();
         }
 
-  
-        private void EditAttendanceTable(DataTable dt)
-        {
-           
-
-            dt.Columns.Add(new DataColumn("Absent", typeof(bool)));
-
-         
-        }
+ 
 
         protected void btnMarkAbsent_Click(object sender, EventArgs e)
         {
@@ -181,9 +173,10 @@ namespace ItiGrades.Nav_Buttons
             Guid studentID = new Guid(ddlSelectStudent.SelectedValue);
             Guid classID = new Guid(ddlSelectClass.SelectedValue);
 
-            DataTable dt = new DataTable();
-             dt = Session["SaveTable"] as DataTable;
+            
+            attendance = attendance.GetByStudentId(studentID);
 
+            attendance.TotalAbsences = +1;
             attendance.StudentId = studentID;
             attendance.ClassId = classID;
             attendance.Absent = true;
@@ -201,12 +194,15 @@ namespace ItiGrades.Nav_Buttons
             Class clas = new Class();
             Attendance attendance = new Attendance();
 
+            AttendanceList aList = new AttendanceList();
+
             TermClassList tClassList = new TermClassList();
             StudentList studentList = new StudentList();
             DataTable dt = new DataTable();
 
             tClassList = tClassList.GetAll(); // Get Term classes
 
+            
 
             dt.Columns.Add("Student Name");
             dt.Columns.Add("Class Name");
@@ -234,6 +230,13 @@ namespace ItiGrades.Nav_Buttons
                             string studentName = student.FullName;
                             string sectionName = ddlSections.SelectedItem.ToString();
                             int totalAbsences = attendance.TotalAbsences;
+
+                            aList.GetAttendanceByStudentID(student.Id);
+                            foreach(Attendance a in aList.List)
+                            {
+                                totalAbsences = totalAbsences +1;
+                            }
+                            
                             
                             dt.Rows.Add(studentName, className, instructorName, sectionName, totalAbsences);                 
 
